@@ -1,0 +1,61 @@
+#search-box {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  -webkit-transform: translate(-35%);
+  -ms-transform: translate(-35%);
+  transform: translate(-35%);
+  width: 220px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  overflow: hidden;
+  z-index: 3;
+  padding: 2px;
+}
+
+#search-box svg {
+  position: relative;
+  top: 11px;
+  fill: #fff;
+}
+
+#search {
+  border: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  outline: none;
+  background: transparent;
+  border-bottom: 2px solid #fff;
+  width: 90px;
+  font-size: 1.1em;
+  color: #fff;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  padding: 27px 10px 10px 10px;
+}
+
+#search:focus,
+#search:active {
+  outline: 0px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  width: 180px;
+}
+
+.addBtn {
+  position: absolute;
+  top: 4px;
+  right: 15px;
+  z-index: 4 !important;
+}

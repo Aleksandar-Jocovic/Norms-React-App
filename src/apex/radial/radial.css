@@ -1,0 +1,93 @@
+.percent {
+  position: relative;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  top: 20px;
+  z-index: 1000;
+  overflow: hidden;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  -webkit-animation: anim 1s ease-out forwards;
+  animation: anim 1s ease-out forwards;
+  -webkit-transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  transform: scale(1.5);
+  margin: 20px;
+}
+
+@-webkit-keyframes anim {
+  100% {
+    -webkit-transform: scale(1.7);
+    transform: scale(1.7);
+  }
+}
+
+@keyframes anim {
+  100% {
+    -webkit-transform: scale(1.7);
+    transform: scale(1.7);
+  }
+}
+.percent:hover {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.percent .number {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.percent .number h2 {
+  color: #9099a1;
+  font-weight: 700;
+  font-size: 20px;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+.percent .number h2 span {
+  font-size: 24px;
+  color: #868e96;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+.percent svg {
+  position: relative;
+  width: 75px;
+  height: 75px;
+  z-index: 1000;
+}
+
+.percent svg circle {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: #717880cc;
+  stroke-width: 5;
+  -webkit-transform: translate(2.5px, 2.5px);
+  -ms-transform: translate(2.5px, 2.5px);
+  transform: translate(2.5px, 2.5px);
+}
+
+.percent svg circle:nth-child(2) {
+  stroke-dasharray: 220;
+  stroke-dashoffset: 220;
+}
