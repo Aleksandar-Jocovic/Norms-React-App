@@ -17,7 +17,7 @@ const Button = ({ comp, name, value }) => {
           item.comp[btnValue] = !item.comp[btnValue];
           //uslov za progres
           if (item.comp[btnValue]) {
-            // +
+            // + increase progress
             let numToAdd = Math.floor(100 / item.repeat);
             let newNum = item.prog + numToAdd;
             if (newNum > 85 && newNum < 100) {
@@ -25,11 +25,10 @@ const Button = ({ comp, name, value }) => {
             }
             item.prog = newNum;
           } else {
-            // -
+            // - decrease proggres
             let numToSubstract = Math.floor(100 / item.repeat);
             let num = item.prog - numToSubstract;
             if (num <= 0) num = 0;
-            //if item.completeed true > 100
             item.prog = num;
           }
         }

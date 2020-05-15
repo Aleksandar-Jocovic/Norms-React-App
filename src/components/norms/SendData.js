@@ -1,3 +1,4 @@
+
 export const endWeek = (day, sent, items, action, monthSent, last) => {
   let newNorms = [];
 
@@ -21,6 +22,7 @@ export const endWeek = (day, sent, items, action, monthSent, last) => {
 
     action(newNorms);
   }
+  console.log('end week is being run')
   return;
 };
 

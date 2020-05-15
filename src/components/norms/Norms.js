@@ -6,57 +6,32 @@ import { search } from './Search';
 import { GlobalContext } from '../../context/GlobalState';
 import './norms.css';
 
-import { endMonth, endWeek } from './SendData';
+import { endMonth, endWeek } from './sendData';
 
 const Norms = () => {
   const { norms, endWeekAction, endMonthAction } = useContext(GlobalContext);
-  /* commented for dev purpose */
-  /*   const day = (() => {
-      const date = new Date();
-      const current = date.getDay();
-      return current;
-    })(); */
-  const [day, setDay] = useState(0)
+  //current day
+  const day = (() => {
+    const date = new Date();
+    const current = date.getDay();
+    return current;
+  })();
 
-  /* commented for dev purpose */
-  // check if is last day of the month
-  /*   const date = new Date();
-    const isLast =
-      date.getDate() ===
-      new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate(); */
-  const isLast = true;
-  const [test, setTest] = useState(false)
+  //check if it is last day of the month
+  const date = new Date();
+  const isLast = date.getDate() ===
+    new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
 
 
-
-
-  /* let isFirst = false; */
-
+  //condition to display add new norm 
   const [add, setAdd] = useState(false);
+  //user search 
   const [searchText, setSearchText] = useState('');
 
+  //index of last norm in the state
   let index = norms.length - 1;
 
   useEffect(() => {
-    /* commented for dev purpose */
-
-    /*     endWeek(
-          day,
-          norms[index].isDataSent,
-          norms,
-          endWeekAction,
-          norms[index].isMonthDataSent
-        );
-        endMonth(
-          isLast,
-          norms[index].isMonthDataSent,
-          norms,
-          endMonthAction,
-          isLast
-        ); */
-  }, []);
-
-  const go = () => {
     endWeek(
       day,
       norms[index].isDataSent,
@@ -64,10 +39,17 @@ const Norms = () => {
       endWeekAction,
       norms[index].isMonthDataSent
     );
-  };
-  console.log(day)
+    endMonth(
+      isLast,
+      norms[index].isMonthDataSent,
+      norms,
+      endMonthAction,
+      isLast
+    );
+  }, []);
 
-  //arr tos tore search result
+
+  //arr of matched search result
   let machedNorms = search(norms, searchText);
 
   //clear search input
@@ -104,34 +86,7 @@ const Norms = () => {
           <Normm key={norm.id} norm={norm} />
         ))}
 
-        {searchText === '' &&
-          norms.map((norm) => <Normm key={norm.id} norm={norm} />)}
-
-        <p>Tests for development purpose</p>
-        <button onClick={() => setTest(!test)} >tests</button>
-        {
-          test && (
-            <div>
-              <button onClick={go}>end week</button>
-
-
-              <div className="tests">
-                <p>Change day to monday only day when week data is seent </p>
-                <button onClick={() => setDay(0)}>
-                  change day to monday
-        </button>
-              </div>
-
-              <div className="tests">
-                <p>Change day to !monday to meet condition witch prevets sending data myltiple times a day</p>
-                <button onClick={() => setDay(1)}>
-                  change day
-        </button>
-              </div>
-
-              <p>|STEP1 > change day > end week (condison is toggled)| <br /> |STEP2 changeday to monday > end week (data is sent)|</p>
-            </div>)
-        }
+        {searchText === '' && norms.map((norm) => <Normm key={norm.id} norm={norm} />)}
 
       </div>
       <button className="btn btn-secondary  addBtn" onClick={handleClick}>

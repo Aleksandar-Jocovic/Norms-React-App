@@ -4,8 +4,6 @@ import Chart from 'react-apexcharts';
 import { formatTitle } from './formatTitle';
 
 const PopChart = (props) => {
-  /*   const [currentMonth, setCurrentMonth] = useState(props.currentMonth);
-  const [lastMonth, setLastMonth] = useState(props.lastMonth); */
 
   const name = props.name.toUpperCase();
   const formatedName = formatTitle(name);

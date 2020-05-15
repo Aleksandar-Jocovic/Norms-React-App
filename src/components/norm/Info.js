@@ -8,7 +8,7 @@ import Year from '../../apex/Year';
 import { GlobalContext } from '../../context/GlobalState';
 
 const Info = ({ norm, info, setInfoFun }) => {
-  const { norms, changeRepeatAction, deleteNorm } = useContext(GlobalContext);
+  const { norms, changeRepeatAction } = useContext(GlobalContext);
 
   const [selectYear, setSelectYear] = useState(false);
   const [edit, setEdit] = useState(false);
@@ -115,7 +115,6 @@ const Info = ({ norm, info, setInfoFun }) => {
       <div className="row">
         <div className="col-12 text-center">
           <button
-            /* id="delete-info-btn" */
             className="btn btn-info p-0 arrow-info-button m-3"
             onClick={setInfoFun}
           >
