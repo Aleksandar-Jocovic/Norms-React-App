@@ -6,7 +6,7 @@ import { search } from './Search';
 import { GlobalContext } from '../../context/GlobalState';
 import './norms.css';
 
-import { endMonth, endWeek } from './sendData';
+import { endMonth, endWeek } from './SendData';
 
 const Norms = () => {
   const { norms, endWeekAction, endMonthAction } = useContext(GlobalContext);

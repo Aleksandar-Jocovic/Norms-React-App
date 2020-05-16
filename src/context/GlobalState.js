@@ -1,24 +1,49 @@
 import React, { createContext, useReducer, useEffect } from 'react';
 import AppReducer from './AppReducer';
 
-//initial state
+/* //initial state
 const getNorms = () => {
-  let normss;
+  let users;
   if (localStorage.getItem('norms') === null) {
-    normss = [
+    users = [
       {
-        name: 'Example',
-        id: 1,
-        prog: 0,
-        comp: [false, false, false, false, false, false, false],
-        currentMonth: [10, 30, 40,],
-        lastMonth: [60, 70, 50, 90],
-        year: [70, 60, 70, 80, 70, 80, 85, 80, 90, 100, 95, 100],
-        repeat: 1,
-        isDataSent: false,
-        isMonthDataSent: false,
+        name: 'test',
+        pass: '1234',
+        normss: [
+          {
+            name: 'Example',
+            id: 1,
+            prog: 0,
+            comp: [false, false, false, false, false, false, false],
+            currentMonth: [10, 30, 40,],
+            lastMonth: [60, 70, 50, 90],
+            year: [70, 60, 70, 80, 70, 80, 85, 80, 90, 100, 95, 100],
+            repeat: 1,
+            isDataSent: false,
+            isMonthDataSent: false,
+          }
+        ]
+      },
+      {
+        name: 'test',
+        pass: '1234',
+        normss: [
+          {
+            name: 'Example',
+            id: 1,
+            prog: 0,
+            comp: [false, false, false, false, false, false, false],
+            currentMonth: [10, 30, 40,],
+            lastMonth: [60, 70, 50, 90],
+            year: [70, 60, 70, 80, 70, 80, 85, 80, 90, 100, 95, 100],
+            repeat: 1,
+            isDataSent: false,
+            isMonthDataSent: false,
+          }
+        ]
       }
-    ];
+    ]
+
   } else {
     normss = JSON.parse(localStorage.getItem('norms'));
   }
@@ -27,8 +52,49 @@ const getNorms = () => {
 const stateLocalStorage = getNorms();
 
 const initialState = {
-  norms: stateLocalStorage,
-};
+  users: stateLocalStorage,
+}; */
+
+const initialState = {
+  users: [
+    {
+      name: 'test',
+      pass: '1234',
+      normss: [
+        {
+          name: 'Example',
+          id: 1,
+          prog: 0,
+          comp: [false, false, false, false, false, false, false],
+          currentMonth: [10, 30, 40,],
+          lastMonth: [60, 70, 50, 90],
+          year: [70, 60, 70, 80, 70, 80, 85, 80, 90, 100, 95, 100],
+          repeat: 1,
+          isDataSent: false,
+          isMonthDataSent: false,
+        }
+      ]
+    },
+    {
+      name: 'test',
+      pass: '1234',
+      normss: [
+        {
+          name: 'Example',
+          id: 1,
+          prog: 0,
+          comp: [false, false, false, false, false, false, false],
+          currentMonth: [10, 30, 40,],
+          lastMonth: [60, 70, 50, 90],
+          year: [70, 60, 70, 80, 70, 80, 85, 80, 90, 100, 95, 100],
+          repeat: 1,
+          isDataSent: false,
+          isMonthDataSent: false,
+        }
+      ]
+    }
+  ]
+}
 
 // Create context
 export const GlobalContext = createContext(initialState);
@@ -83,7 +149,7 @@ export const GlobalProvider = ({ children }) => {
   return (
     <GlobalContext.Provider
       value={{
-        norms: state.norms,
+        norms: state.uses[0].norms,
         deleteNorm,
         addNorm,
         checkDay,
