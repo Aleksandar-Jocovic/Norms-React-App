@@ -11,7 +11,7 @@ const DeleteNorm = ({ norm, setDeleteCondition, deleteCondition, info, }) => {
   const deleteNormFinal = () => {
     deleteNorm([currentUserId, norm.id])
     if (norms.length === 1) {
-      //clearing ls if there is no norms left
+      //clearing ls if there is no norms leftt
       // but with users is difernt
       /* localStorage.clear(); */
     }
