@@ -4,14 +4,13 @@ class Auth {
     this.authenticated = false;
   }
 
-  login(users, name, password) {
+  login(users, name, password, action) {
     users.forEach(user => {
       if (user.name === name && user.pass === password) {
         this.authenticated = true;
-        return;
+        action(user.userId)
       }
     });
-    console.log('no user with that name')
   }
 
   logout() {

@@ -31,23 +31,23 @@ const Norms = () => {
   //index of last norm in the state
   let index = norms.length - 1;
 
-  useEffect(() => {
-    endWeek(
-      day,
-      norms[index].isDataSent,
-      norms,
-      endWeekAction,
-      norms[index].isMonthDataSent
-    );
-    endMonth(
-      isLast,
-      norms[index].isMonthDataSent,
-      norms,
-      endMonthAction,
-      isLast
-    );
-  }, []);
-
+  /*   useEffect(() => {
+      endWeek(
+        day,
+        norms[index].isDataSent,
+        norms,
+        endWeekAction,
+        norms[index].isMonthDataSent
+      );
+      endMonth(
+        isLast,
+        norms[index].isMonthDataSent,
+        norms,
+        endMonthAction,
+        isLast
+      );
+    }, []);
+   */
 
   //arr of matched search result
   let machedNorms = search(norms, searchText);

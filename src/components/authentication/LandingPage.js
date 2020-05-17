@@ -6,7 +6,7 @@ import { GlobalContext } from '../../context/GlobalState';
 
 const LandingPage = props => {
 
-  const { users, singInAction } = useContext(GlobalContext);
+  const { users, singInAction, changeUserAction, globalSTATE } = useContext(GlobalContext);
 
   const [username, setUserName] = useState('')
   const [password, setPassword] = useState('')
@@ -45,7 +45,17 @@ const LandingPage = props => {
       console.log(users)
     }
   }
-
+  /* 
+    const changeUser = () => {
+      let temp;
+      users.forEach(el => {
+        if (el.name === username && el.pass === password) {
+          temp = el.userId
+        }
+      })
+      changeUserAction(temp)
+    }
+   */
 
   const borderDivStyle = {
     width: 111,
@@ -122,7 +132,8 @@ const LandingPage = props => {
           <button
             className="btn btn-info m-auto"
             onClick={() => {
-              auth.login(users, username, password)
+              auth.login(users, username, password, changeUserAction)
+              console.log(globalSTATE)
               props.history.push("/app")
             }}
           >Log in</button>

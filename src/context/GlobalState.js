@@ -56,16 +56,12 @@ const initialState = {
 }; */
 
 const initialState = {
-  online: [
-    {
-      name: 'test',
-      userId: '1234'
-    }
-  ],
+  currentUserId: 1,
   users: [
+
     {
-      name: 'test',
-      pass: '1234',
+      name: 'w',
+      pass: 'w',
       userId: 0,
       norms: [
         {
@@ -81,7 +77,39 @@ const initialState = {
           isMonthDataSent: false,
         }
       ]
+    },
+    {
+      name: 'q',
+      pass: 'q',
+      userId: 1,
+      norms: [
+        {
+          name: 'Example',
+          id: 2,
+          prog: 0,
+          comp: [false, false, false, false, false, false, false],
+          currentMonth: [10, 30, 40,],
+          lastMonth: [60, 70, 50, 90],
+          year: [70, 60, 70, 80, 70, 80, 85, 80, 90, 100, 95, 100],
+          repeat: 1,
+          isDataSent: false,
+          isMonthDataSent: false,
+        },
+        {
+          name: 'q',
+          id: 1,
+          prog: 0,
+          comp: [false, false, false, false, false, false, false],
+          currentMonth: [10, 30, 40,],
+          lastMonth: [60, 70, 50, 90],
+          year: [70, 60, 70, 80, 70, 80, 85, 80, 90, 100, 95, 100],
+          repeat: 1,
+          isDataSent: false,
+          isMonthDataSent: false,
+        }
+      ]
     }
+
   ]
 }
 
@@ -101,13 +129,16 @@ export const GlobalProvider = ({ children }) => {
       type: 'DELETE_NORM',
       payload: id,
     });
+    console.log('add norm actin')
+
   }
 
-  function addNorm(norm) {
+  function addNormAction(users) {
     dispatch({
       type: 'ADD_NORM',
-      payload: norm,
+      payload: users,
     });
+    console.log('add norm actin')
   }
 
   function checkDay(norms) {
@@ -115,6 +146,8 @@ export const GlobalProvider = ({ children }) => {
       type: 'CHECK_DAY',
       payload: norms,
     });
+    console.log('add norm actin')
+
   }
 
   function endWeekAction(norms) {
@@ -122,6 +155,8 @@ export const GlobalProvider = ({ children }) => {
       type: 'END_WEEK',
       payload: norms,
     });
+    console.log('add norm actin')
+
   }
 
   function endMonthAction(norms) {
@@ -129,6 +164,8 @@ export const GlobalProvider = ({ children }) => {
       type: 'END_MONTH',
       payload: norms,
     });
+    console.log('add norm actin')
+
   }
 
   function changeRepeatAction(norm) {
@@ -136,6 +173,8 @@ export const GlobalProvider = ({ children }) => {
       type: 'CHANGE_REPEAT',
       payload: norm,
     });
+    console.log('add norm actin')
+
   }
 
   function singInAction(user) {
@@ -143,20 +182,34 @@ export const GlobalProvider = ({ children }) => {
       type: 'SING_IN',
       payload: user,
     });
+    console.log('add norm actin')
+
   }
+
+  function changeUserAction(newid) {
+    dispatch({
+      type: 'CHANGE_CURRENT_USER',
+      payload: newid,
+    });
+  }
+
+  console.log(state)
 
   return (
     <GlobalContext.Provider
       value={{
+        globalSTATE: state,
+        currentUserId: state.currentUserId,
         users: state.users,
-        norms: state.users[0].norms,
+        norms: state.users[state.currentUserId].norms,
         deleteNorm,
-        addNorm,
+        addNormAction,
         checkDay,
         endWeekAction,
         endMonthAction,
         changeRepeatAction,
-        singInAction
+        singInAction,
+        changeUserAction
       }}
     >
       {children}

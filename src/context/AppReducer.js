@@ -1,15 +1,23 @@
 export default (state, action) => {
   switch (action.type) {
     case 'DELETE_NORM': {
+      console.log(action.payload)
+
       return {
         ...state,
-        norms: state.norms.filter((norm) => norm.id !== action.payload),
+        users: state.users.map(item => {
+          if (item.userId === action.payload[0]) {
+            let filtered = item.norms.filter((norm) => norm.id !== action.payload[1])
+            item.norms = filtered
+            return item
+          } else return item
+        })
       };
     }
     case 'ADD_NORM':
       return {
         ...state,
-        norms: [action.payload, ...state.norms],
+        users: action.payload,
       };
     case 'CHECK_DAY':
       return {
@@ -35,6 +43,11 @@ export default (state, action) => {
       return {
         ...state,
         users: [action.payload, ...state.users],
+      };
+    case 'CHANGE_CURRENT_USER':
+      return {
+        currentUserId: action.payload,
+        users: [...state.users]
       };
     default:
       return state;
