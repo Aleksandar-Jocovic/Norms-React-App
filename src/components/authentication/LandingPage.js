@@ -1,11 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import auth from './auth'
 import './landingPage.css'
 
+import { GlobalContext } from '../../context/GlobalState';
+
 const LandingPage = props => {
 
+  const { users, singInAction } = useContext(GlobalContext);
+
   const [username, setUserName] = useState('')
-  const [password, setPasswprd] = useState('')
+  const [password, setPassword] = useState('')
+
+  const [singInUsername, setSingInUserName] = useState('')
+  const [singInPassword, setSingInPassword] = useState('')
+
   const [error, setError] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -15,8 +23,29 @@ const LandingPage = props => {
   const onSubmit = () => {
     console.log('submit')
     //create neew user
-
   }
+
+  const singIn = () => {
+
+    class Newuser {
+      constructor(name, userId, pass, norms) {
+        this.name = name;
+        this.pass = pass;
+        this.userId = userId;
+        this.norms = norms;
+      }
+    }
+
+    const takenNames = users.map(user => user.name)
+    console.log(takenNames)
+
+    if (!takenNames.includes(singInUsername) /* && singInUsername.length !== 0 */) {
+      const userInstance = new Newuser(singInUsername, singInPassword, users.length + 1, {})
+      singInAction(userInstance)
+      console.log(users)
+    }
+  }
+
 
   const borderDivStyle = {
     width: 111,
@@ -84,7 +113,7 @@ const LandingPage = props => {
                 type="text"
                 placeholder=" "
                 value={password}
-                onChange={(e) => setPasswprd(e.target.value)}
+                onChange={(e) => setPassword(e.target.value)}
               />
               <label id="labelAuth">pasword*</label>
             </div>
@@ -93,7 +122,7 @@ const LandingPage = props => {
           <button
             className="btn btn-info m-auto"
             onClick={() => {
-              auth.login()
+              auth.login(users, username, password)
               props.history.push("/app")
             }}
           >Log in</button>
@@ -115,8 +144,8 @@ const LandingPage = props => {
                 className="form-control mb-4"
                 type="text"
                 placeholder=" "
-                value={username}
-                onChange={(e) => setUserName(e.target.value)}
+                value={singInUsername}
+                onChange={(e) => setSingInUserName(e.target.value)}
               />
               <label id="labelAuth">username*</label>
             </div>
@@ -127,20 +156,8 @@ const LandingPage = props => {
                 className="form-control mb-4"
                 type="text"
                 placeholder=" "
-                value={password}
-                onChange={(e) => setPasswprd(e.target.value)}
-              />
-              <label id="labelAuth">pasword*</label>
-            </div>
-            <div>
-              <input
-                id="inputAuth"
-                autoComplete="off"
-                className="form-control mb-4"
-                type="text"
-                placeholder=" "
-                value={password}
-                onChange={(e) => setPasswprd(e.target.value)}
+                value={singInPassword}
+                onChange={(e) => setSingInPassword(e.target.value)}
               />
               <label id="labelAuth">pasword*</label>
             </div>
@@ -149,8 +166,9 @@ const LandingPage = props => {
           <button
             className="btn btn-info text-center"
             onClick={() => {
-              auth.login()
-              props.history.push("/app")
+              singIn()
+              /*  auth.login()
+               props.history.push("/app") */
             }}
           >Log in</button>
         </>

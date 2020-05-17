@@ -8,6 +8,7 @@ import ProtectdRoute from './components/authentication/ProtectedRoute'
 import { GlobalProvider } from './context/GlobalState';
 import { Route, Switch } from 'react-router-dom';
 
+
 const App = () => {
   return (
     <GlobalProvider>

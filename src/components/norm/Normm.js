@@ -20,7 +20,7 @@ const Norm = ({ norm }) => {
 
   // UPDATING LOCALSTORAGE
   /*   localStorage.clear(); */
-  localStorage.setItem('norms', JSON.stringify(norms));
+  /*   localStorage.setItem('norms', JSON.stringify(norms)); */
 
   const styleBtn = {
     transitionStyle: {

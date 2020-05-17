@@ -56,29 +56,18 @@ const initialState = {
 }; */
 
 const initialState = {
+  online: [
+    {
+      name: 'test',
+      userId: '1234'
+    }
+  ],
   users: [
     {
       name: 'test',
       pass: '1234',
-      normss: [
-        {
-          name: 'Example',
-          id: 1,
-          prog: 0,
-          comp: [false, false, false, false, false, false, false],
-          currentMonth: [10, 30, 40,],
-          lastMonth: [60, 70, 50, 90],
-          year: [70, 60, 70, 80, 70, 80, 85, 80, 90, 100, 95, 100],
-          repeat: 1,
-          isDataSent: false,
-          isMonthDataSent: false,
-        }
-      ]
-    },
-    {
-      name: 'test',
-      pass: '1234',
-      normss: [
+      userId: 0,
+      norms: [
         {
           name: 'Example',
           id: 1,
@@ -95,6 +84,9 @@ const initialState = {
     }
   ]
 }
+
+//when you log in your name goes in first place
+// when you login globalstate provide first loged user or maybe it si only onne
 
 // Create context
 export const GlobalContext = createContext(initialState);
@@ -146,16 +138,25 @@ export const GlobalProvider = ({ children }) => {
     });
   }
 
+  function singInAction(user) {
+    dispatch({
+      type: 'SING_IN',
+      payload: user,
+    });
+  }
+
   return (
     <GlobalContext.Provider
       value={{
-        norms: state.uses[0].norms,
+        users: state.users,
+        norms: state.users[0].norms,
         deleteNorm,
         addNorm,
         checkDay,
         endWeekAction,
         endMonthAction,
         changeRepeatAction,
+        singInAction
       }}
     >
       {children}

@@ -31,6 +31,11 @@ export default (state, action) => {
         ...state,
         norms: [action.payload, ...state.norms],
       };
+    case 'SING_IN':
+      return {
+        ...state,
+        users: [action.payload, ...state.users],
+      };
     default:
       return state;
   }
