@@ -27,12 +27,12 @@ export default (state, action) => {
     case 'END_WEEK':
       return {
         ...state,
-        norms: action.payload,
+        users: action.payload
       };
     case 'END_MONTH':
       return {
         ...state,
-        norms: action.payload,
+        users: action.payload,
       };
     case 'CHANGE_REPAEAT':
       return {
@@ -42,7 +42,7 @@ export default (state, action) => {
     case 'SING_IN':
       return {
         ...state,
-        users: [action.payload, ...state.users],
+        users: [...state.users, action.payload],
       };
     case 'CHANGE_CURRENT_USER':
       return {

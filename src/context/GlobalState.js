@@ -93,7 +93,7 @@ const initialState = {
           year: [70, 60, 70, 80, 70, 80, 85, 80, 90, 100, 95, 100],
           repeat: 1,
           isDataSent: false,
-          isMonthDataSent: false,
+          isMonthDataSent: true,
         },
         {
           name: 'q',
@@ -105,7 +105,7 @@ const initialState = {
           year: [70, 60, 70, 80, 70, 80, 85, 80, 90, 100, 95, 100],
           repeat: 1,
           isDataSent: false,
-          isMonthDataSent: false,
+          isMonthDataSent: true,
         }
       ]
     }
@@ -129,7 +129,7 @@ export const GlobalProvider = ({ children }) => {
       type: 'DELETE_NORM',
       payload: id,
     });
-    console.log('add norm actin')
+    console.log('actin')
 
   }
 
@@ -138,7 +138,7 @@ export const GlobalProvider = ({ children }) => {
       type: 'ADD_NORM',
       payload: users,
     });
-    console.log('add norm actin')
+    console.log(' actin')
   }
 
   function checkDay(norms) {
@@ -146,25 +146,25 @@ export const GlobalProvider = ({ children }) => {
       type: 'CHECK_DAY',
       payload: norms,
     });
-    console.log('add norm actin')
+    console.log('actin')
 
   }
 
-  function endWeekAction(norms) {
+  function endWeekAction(user) {
     dispatch({
       type: 'END_WEEK',
-      payload: norms,
+      payload: user,
     });
-    console.log('add norm actin')
+    console.log('actin')
 
   }
 
-  function endMonthAction(norms) {
+  function endMonthAction(users) {
     dispatch({
       type: 'END_MONTH',
-      payload: norms,
+      payload: users,
     });
-    console.log('add norm actin')
+    console.log('actin')
 
   }
 
@@ -173,7 +173,7 @@ export const GlobalProvider = ({ children }) => {
       type: 'CHANGE_REPEAT',
       payload: norm,
     });
-    console.log('add norm actin')
+    console.log('actin')
 
   }
 
@@ -182,7 +182,7 @@ export const GlobalProvider = ({ children }) => {
       type: 'SING_IN',
       payload: user,
     });
-    console.log('add norm actin')
+    console.log(' actin')
 
   }
 
@@ -194,7 +194,6 @@ export const GlobalProvider = ({ children }) => {
   }
 
   console.log(state)
-
   return (
     <GlobalContext.Provider
       value={{

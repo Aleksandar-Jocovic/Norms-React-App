@@ -9,18 +9,20 @@ import './norms.css';
 import { endMonth, endWeek } from './SendData';
 
 const Norms = () => {
-  const { norms, endWeekAction, endMonthAction } = useContext(GlobalContext);
+  const { norms, endWeekAction, endMonthAction, users, currentUserId } = useContext(GlobalContext);
   //current day
-  const day = (() => {
-    const date = new Date();
-    const current = date.getDay();
-    return current;
-  })();
+  /*   const day = (() => {
+      const date = new Date();
+      const current = date.getDay();
+      return current;
+    })(); */
+  const day = 0;
 
   //check if it is last day of the month
-  const date = new Date();
-  const isLast = date.getDate() ===
-    new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+  /*   const date = new Date();
+    const isLast = date.getDate() ===
+      new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate(); */
+  const isLast = true;
 
 
   //condition to display add new norm 
@@ -31,23 +33,46 @@ const Norms = () => {
   //index of last norm in the state
   let index = norms.length - 1;
 
-  /*   useEffect(() => {
-      endWeek(
-        day,
-        norms[index].isDataSent,
-        norms,
-        endWeekAction,
-        norms[index].isMonthDataSent
-      );
-      endMonth(
-        isLast,
-        norms[index].isMonthDataSent,
-        norms,
-        endMonthAction,
-        isLast
-      );
-    }, []);
-   */
+  useEffect(() => {
+    /*     endWeek(
+          day,
+          norms[index].isDataSent,
+          norms,
+          endWeekAction,
+          norms[index].isMonthDataSent
+        ); */
+    /*
+    endMonth(
+      isLast,
+      norms[index].isMonthDataSent,
+      norms,
+      endMonthAction,
+      isLast
+    );
+     */
+  }, []);
+
+  const goweek = () => {
+    endWeek(
+      day,
+      norms[index].isDataSent,
+      users,
+      currentUserId,
+      endWeekAction,
+      norms[index].isMonthDataSent,
+      isLast
+    );
+  }
+  const gomonth = () => {
+    endMonth(
+      isLast,
+      norms[index].isMonthDataSent,
+      users,
+      currentUserId,
+      endMonthAction,
+    );
+  }
+
 
   //arr of matched search result
   let machedNorms = search(norms, searchText);
@@ -126,6 +151,9 @@ const Norms = () => {
       </div>
 
       {add && <AddNorm />}
+      <button onClick={goweek}>goweek</button>
+      <button onClick={gomonth}>gomonth</button>
+
     </div>
   );
 };
@@ -136,4 +164,6 @@ export default Norms;
 not full week find how to continue from that day
 if user dont open app on monday data won't be sent
 if norm.len = 0 error on endWeek
+if first day usr uses app and it is last day of the mont error in reduce endmonth
+if users leng = 00 id
 */

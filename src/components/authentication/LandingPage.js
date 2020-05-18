@@ -27,23 +27,21 @@ const LandingPage = props => {
 
   const singIn = () => {
 
-    class Newuser {
-      constructor(name, userId, pass, norms) {
-        this.name = name;
-        this.pass = pass;
-        this.userId = userId;
-        this.norms = norms;
-      }
+    const newuser = {
+      name: username,
+      pass: password,
+      userId: users.length,
+      norms: []
     }
 
     const takenNames = users.map(user => user.name)
     console.log(takenNames)
 
     if (!takenNames.includes(singInUsername) /* && singInUsername.length !== 0 */) {
-      const userInstance = new Newuser(singInUsername, singInPassword, users.length + 1, {})
-      singInAction(userInstance)
-      console.log(users)
+      singInAction(newuser)
     }
+    /*     auth.login(users, username, password, changeUserAction)
+        props.history.push("/app") */
   }
   /* 
     const changeUser = () => {
@@ -133,7 +131,6 @@ const LandingPage = props => {
             className="btn btn-info m-auto"
             onClick={() => {
               auth.login(users, username, password, changeUserAction)
-              console.log(globalSTATE)
               props.history.push("/app")
             }}
           >Log in</button>
@@ -177,11 +174,12 @@ const LandingPage = props => {
           <button
             className="btn btn-info text-center"
             onClick={() => {
-              singIn()
-              /*  auth.login()
-               props.history.push("/app") */
+              /* singIn() */
+              auth.singin(users, singInUsername, singInPassword, singInAction, changeUserAction)
+              /* auth.login(users, singInUsername, singIn, changeUserAction) */
+              props.history.push("/app")
             }}
-          >Log in</button>
+          >Sing in</button>
         </>
       }
     </div>
