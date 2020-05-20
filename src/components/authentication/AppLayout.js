@@ -12,7 +12,7 @@ const AppLayout = (props) => {
         className="btn btn-warning"
         onClick={() => {
           auth.logout();
-          props.history.push("/")
+          props.history.push("/Norms-React-App")
         }}
       >
         Logout

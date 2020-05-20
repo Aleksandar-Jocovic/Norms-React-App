@@ -7,13 +7,18 @@ class Auth {
   login(users, name, password, action) {
     users.forEach(user => {
       if (user.name === name && user.pass === password) {
+        console.log(" login if stat")
+        console.log(user.name, user.pass)
+        console.log(name, password)
+
         this.authenticated = true;
         action(user.userId)
       }
     });
   }
 
-  singin(users, singName, singPassword, singInAct, changeUserAct) {
+  singin(users, singName, singPassword, singInAct, success, setUserName, setPassword, setLogin) {
+    console.log('sing in', singPassword.length)
     const newuser = {
       name: singName,
       pass: singPassword,
@@ -21,16 +26,12 @@ class Auth {
       norms: []
     }
     const takenNames = users.map(user => user.name)
-    console.log(takenNames)
-    if (!takenNames.includes(singName)) {
+    if (!takenNames.includes(singName) && singName != "" && singPassword.length > 5) {
       singInAct(newuser)
-      users.forEach(user => {
-        if (user.name === singName && user.pass === singPassword) {
-
-          changeUserAct(user.userId)
-          this.authenticated = true;
-        }
-      });
+      success(true)
+      setUserName(singName)
+      setPassword(singPassword)
+      setLogin(true)
     }
   }
 

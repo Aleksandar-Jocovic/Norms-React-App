@@ -16,19 +16,25 @@
 form {
   position: relative;
   top: 11px;
+  width: fit-content !important;
 }
 
 form .inputAuth {
   width: 95% !important;
 }
-small {
+#error-msg {
   position: absolute;
   top: 40px;
-  -ms-flex-item-align: start;
-  align-self: flex-start;
+/*   transform: translate(-45%, 2px);
+  -ms-flex-item-align: flex-s;
+  align-self: center; */
   z-index: 4;
 }
-
+#error-msg-password {
+  position: absolute;
+  top: 109px;
+  z-index: 4;
+}
 #inputAuth {
   font-size: 1.2em;
   padding: 30px 10px 10px 10px;
