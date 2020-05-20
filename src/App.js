@@ -14,7 +14,7 @@ const App = () => {
     <GlobalProvider>
       <>
         <Switch>
-          <Route exact path="/Norms-React-App" component={LandingPage} />
+          <Route exact path="/" component={LandingPage} />
           <ProtectdRoute exact path="/app" component={AppLayout} />
           <Route path="*" component={() => "404 PAGE NOT FOUND"} />
         </Switch>

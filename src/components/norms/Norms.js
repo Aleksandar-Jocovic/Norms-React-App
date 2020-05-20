@@ -166,4 +166,6 @@ if user dont open app on monday data won't be sent
 if norm.len = 0 error on endWeek
 if first day usr uses app and it is last day of the mont error in reduce endmonth
 if users leng = 00 id
+singin to login
+error mesages login sing in
 */

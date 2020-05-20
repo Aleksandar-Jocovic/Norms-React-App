@@ -13,7 +13,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
         } else {
           return <Redirect
             to={{
-              pahtname: "/Norms-React-App",
+              pahtname: "/",
               state: {
                 from: props.location
               }

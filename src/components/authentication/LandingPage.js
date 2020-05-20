@@ -19,42 +19,6 @@ const LandingPage = props => {
 
   const [login, setLogin] = useState(true);
 
-
-  const onSubmit = () => {
-    console.log('submit')
-    //create neew user
-  }
-
-  const singIn = () => {
-
-    const newuser = {
-      name: username,
-      pass: password,
-      userId: users.length,
-      norms: []
-    }
-
-    const takenNames = users.map(user => user.name)
-    console.log(takenNames)
-
-    if (!takenNames.includes(singInUsername) /* && singInUsername.length !== 0 */) {
-      singInAction(newuser)
-    }
-    /*     auth.login(users, username, password, changeUserAction)
-        props.history.push("/app") */
-  }
-  /* 
-    const changeUser = () => {
-      let temp;
-      users.forEach(el => {
-        if (el.name === username && el.pass === password) {
-          temp = el.userId
-        }
-      })
-      changeUserAction(temp)
-    }
-   */
-
   const borderDivStyle = {
     width: 111,
     height: 2,
@@ -94,10 +58,7 @@ const LandingPage = props => {
 
       {login ?
         <>
-          <form
-            className="form-inline my-3 my-lg-0 d-flex flex-column w-100 "
-            onSubmit={onSubmit}
-          >
+          <form className="form-inline my-3 my-lg-0 d-flex flex-column w-100 ">
             {error ? (
               <small className="text-danger p-0 m-0">{errorMessage}</small>
             ) : null}
@@ -138,10 +99,7 @@ const LandingPage = props => {
 
         :
         <>
-          <form
-            className="form-inline my-3 my-lg-0 d-flex flex-column w-100 "
-            onSubmit={onSubmit}
-          >
+          <form className="form-inline my-3 my-lg-0 d-flex flex-column w-100 ">
             {error ? (
               <small className="text-danger p-0 m-0">{errorMessage}</small>
             ) : null}
@@ -174,7 +132,6 @@ const LandingPage = props => {
           <button
             className="btn btn-info text-center"
             onClick={() => {
-              /* singIn() */
               auth.singin(users, singInUsername, singInPassword, singInAction, changeUserAction)
               /* auth.login(users, singInUsername, singIn, changeUserAction) */
               props.history.push("/app")

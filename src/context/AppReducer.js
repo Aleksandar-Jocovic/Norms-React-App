@@ -22,7 +22,7 @@ export default (state, action) => {
     case 'CHECK_DAY':
       return {
         ...state,
-        norms: action.payload,
+        users: action.payload
       };
     case 'END_WEEK':
       return {
