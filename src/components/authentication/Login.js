@@ -7,7 +7,7 @@ import { GlobalContext } from '../../context/GlobalState';
 
 const Login = ({ props, setUserName, setPassword, username, password }) => {
 
-  const { users, singInAction, changeUserAction, globalSTATE } = useContext(GlobalContext);
+  const { users, changeUserAction } = useContext(GlobalContext);
 
 
 
@@ -19,16 +19,20 @@ const Login = ({ props, setUserName, setPassword, username, password }) => {
 
   const validateInput = () => {
     let takenNames = users.map(user => user.name)
+    let takenPasswords = users.map(user => user.pass)
+    let goodPassword = takenPasswords.include(password)
+
     if (username === '') {
       setErrorMessage("*username is required.")
       setError(true)
       console.log('error', error)
-    } else if (!takenNames.includes(username)) {
-      setErrorMessage("*username does't exis.")
+    }
+    if (!takenNames.includes(username) || !takenPasswords.include(password)) {
+      setErrorMessage("*username or password does't match.")
       setError(true)
     }
     if (password === '') {
-      setErrorMessagePassword('*password must be at least 6 character long')
+      setErrorMessagePassword("*password is required.")
       setErrorPassword(true)
     }
     else setError(false)
@@ -53,7 +57,9 @@ const Login = ({ props, setUserName, setPassword, username, password }) => {
           />
           <label id="labelAuth">username*</label>
         </div>
-
+        {errorPassword ? (
+          <small id="error-msg-password" className="text-danger p-0 m-0">{errorMessagePassword}</small>
+        ) : null}
         <div>
           <input
             id="inputAuth"
@@ -66,19 +72,15 @@ const Login = ({ props, setUserName, setPassword, username, password }) => {
           />
           <label id="labelAuth">pasword*</label>
         </div>
-        {errorPassword ? (
-          <small id="error-msg-password" className="text-danger p-0 m-0">{errorMessagePassword}</small>
-        ) : null}
-
       </form>
+
       <button
         className="btn btn-info m-auto"
         onClick={() => {
           validateInput()
-
           auth.login(users, username, password, changeUserAction)
-
           props.history.push("/app")
+
           if (!auth.authenticated) {
             props.history.push("/Norms-React-App")
           }

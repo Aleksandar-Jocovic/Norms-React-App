@@ -5,9 +5,9 @@ import './landingPage.css'
 
 import { GlobalContext } from '../../context/GlobalState';
 
-const Singin = ({ props, setUserName, setPassword, username, password, setSuccess, setLogin }) => {
+const Singin = ({ setUserName, setPassword, setSuccess, setLogin }) => {
 
-  const { users, singInAction, changeUserAction, globalSTATE } = useContext(GlobalContext);
+  const { users, singInAction } = useContext(GlobalContext);
 
   const [singInUsername, setSingInUserName] = useState('')
   const [singInPassword, setSingInPassword] = useState('')

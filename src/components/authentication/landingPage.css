@@ -25,9 +25,6 @@ form .inputAuth {
 #error-msg {
   position: absolute;
   top: 40px;
-/*   transform: translate(-45%, 2px);
-  -ms-flex-item-align: flex-s;
-  align-self: center; */
   z-index: 4;
 }
 #error-msg-password {
