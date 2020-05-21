@@ -52,6 +52,7 @@ const newYear = date.getMonth === 0;
 
 export const endMonth = (last, sent, users, currentUser, action) => {
   // endWeek();
+  console.log("endmonth")
   if (!last && sent) {
     let usersUpdated = [];
     users.forEach(user => {
@@ -65,7 +66,7 @@ export const endMonth = (last, sent, users, currentUser, action) => {
       } else usersUpdated.push(user)
     })
     action(usersUpdated)
-  } else if (last && !sent) {
+  } else {
 
     let usersUpdated = [];
 

@@ -6,14 +6,12 @@ class Auth {
 
   login(users, name, password, action) {
     users.forEach(user => {
-      if (user.name === name && user.pass === password) {
-        console.log(" login if stat")
-        console.log(user.name, user.pass)
-        console.log(name, password)
+      console.log(" login if stat")
+      console.log(user.name, user.pass)
+      console.log(name, password)
 
-        this.authenticated = true;
-        action(user.userId)
-      }
+      this.authenticated = true;
+      action(user.userId)
     });
   }
 
@@ -25,14 +23,11 @@ class Auth {
       userId: users.length,
       norms: []
     }
-    const takenNames = users.map(user => user.name)
-    if (!takenNames.includes(singName) && singName != "" && singPassword.length > 5) {
-      singInAct(newuser)
-      success(true)
-      setUserName(singName)
-      setPassword(singPassword)
-      setLogin(true)
-    }
+    singInAct(newuser)
+    success(true)
+    setUserName(singName)
+    setPassword(singPassword)
+    setLogin(true)
   }
 
   logout() {

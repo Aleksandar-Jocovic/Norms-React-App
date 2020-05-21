@@ -106,3 +106,13 @@ form .inputAuth {
 #inputAuth::placeholder {
   opacity: 1;
 }
+
+.password-hidden-btn {
+  position: absolute;
+  transform: translate(-100%, 50%);
+  background: transparent;
+  border: none;
+  color: #5bc0de;
+  user-select: none;
+  outline: none;
+}

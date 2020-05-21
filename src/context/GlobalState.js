@@ -93,7 +93,7 @@ const initialState = {
           year: [70, 60, 70, 80, 70, 80, 85, 80, 90, 100, 95, 100],
           repeat: 1,
           isDataSent: false,
-          isMonthDataSent: true,
+          isMonthDataSent: false,
         },
         {
           name: 'q',

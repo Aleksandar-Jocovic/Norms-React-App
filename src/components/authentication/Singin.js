@@ -14,33 +14,49 @@ const Singin = ({ setUserName, setPassword, setSuccess, setLogin }) => {
 
   const [error, setError] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
-
   const [errorPassword, setErrorPassword] = useState(false)
   const [errorMessagePassword, setErrorMessagePassword] = useState('')
+  const [passwordHidden, setPasswordHidden] = useState(true);
+
 
   const validateInput = () => {
     let takenNames = users.map(user => user.name)
+
+    if (!takenNames.includes(singInUsername) && singInPassword.length > 5
+      && singInUsername != '') {
+      return true
+    }
     if (singInUsername === '') {
       setErrorMessage("*username is required.")
       setError(true)
     }
-    else if (takenNames.includes(singInUsername)) {
+
+    if (takenNames.includes(singInUsername)) {
       setErrorMessage("*username already exis.")
       setError(true)
     }
-    if (singInPassword < 6) {
+
+    if (singInUsername !== '' && !takenNames.includes(singInUsername)) {
+      setError(false)
+    }
+
+    if (singInPassword === '') {
+      setErrorMessagePassword('*password is required')
+      setErrorPassword(true)
+    }
+    if (singInPassword !== '' && singInPassword.length < 6) {
       setErrorMessagePassword('*password must be at least 6 character long')
       setErrorPassword(true)
-    } else {
-      setError(false)
+    }
+
+    if (singInPassword !== '' && singInPassword.length > 6) {
       setErrorPassword(false)
-      console.log('ggod input')
     }
   }
 
   return (
     <>
-      <form className="form-inline my-3 my-lg-0 d-flex flex-column">
+      <form className="form-inline my-2 d-flex flex-column">
         {error ? (
           <small id="error-msg" className="text-danger p-0 m-0">{errorMessage}</small>
         ) : null}
@@ -64,11 +80,17 @@ const Singin = ({ setUserName, setPassword, setSuccess, setLogin }) => {
             id="inputAuth"
             autoComplete="off"
             className="form-control mb-4"
-            type="text"
+            type={passwordHidden ? 'password' : 'text'}
             placeholder=" "
             value={singInPassword}
             onChange={(e) => setSingInPassword(e.target.value)}
           />
+          <button className="password-hidden-btn" onClick={(e) => {
+            e.preventDefault()
+            setPasswordHidden(!passwordHidden)
+          }}>
+            {passwordHidden ? 'show' : 'hide'}
+          </button>
           <label id="labelAuth">pasword*</label>
         </div>
 
@@ -76,9 +98,10 @@ const Singin = ({ setUserName, setPassword, setSuccess, setLogin }) => {
       <button
         className="btn btn-info text-center"
         onClick={() => {
-          validateInput()
-          auth.singin(users, singInUsername, singInPassword, singInAction,
-            setSuccess, setUserName, setPassword, setLogin)
+          if (validateInput()) {
+            auth.singin(users, singInUsername, singInPassword, singInAction,
+              setSuccess, setUserName, setPassword, setLogin)
+          }
         }}
       >Sing in</button>
     </>
