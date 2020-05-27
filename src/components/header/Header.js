@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Header = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-secondary d-flex justify-content-between">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-secondary">
       <p className="navbar-brand m-0">NORMS</p>
     </nav>
   );

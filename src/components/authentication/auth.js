@@ -6,12 +6,14 @@ class Auth {
 
   login(users, name, password, action) {
     users.forEach(user => {
+      if (user.name === name) {
+        action(user.userId)
+      }
       console.log(" login if stat")
       console.log(user.name, user.pass)
       console.log(name, password)
 
       this.authenticated = true;
-      action(user.userId)
     });
   }
 

@@ -65,6 +65,31 @@
 }
 }
 
+/* profile buutton */
+.profile-button {
+  position: absolute;
+  top: 10px;
+  left: 110px;
+  margin-left: 20px;
+  background: transparent;
+  border: none;
+  user-select: none;
+}
+
+.profile {
+  position: absolute;
+  top: 50px;
+  left: 70px;
+  width: 150px;
+  text-align: center;
+  max-height: 400px;
+  overflow: hidden;
+  border: 1px solid #5bc0de;
+  padding: 10px;
+  border-radius: 15px;
+
+}
+
 /* @media (min-width: 576px) { ... }
 
 // Medium devices (tablets, 768px and up)
