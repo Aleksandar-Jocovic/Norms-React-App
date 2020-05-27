@@ -33,6 +33,7 @@ form .inputAuth {
   z-index: 4;
 }
 #inputAuth {
+  position: relative;
   font-size: 1.2em;
   padding: 30px 10px 10px 10px;
   border: none;
@@ -109,7 +110,8 @@ form .inputAuth {
 
 .password-hidden-btn {
   position: absolute;
-  transform: translate(-100%, 50%);
+  right: 15px;
+  top: 80px;
   background: transparent;
   border: none;
   color: #5bc0de;

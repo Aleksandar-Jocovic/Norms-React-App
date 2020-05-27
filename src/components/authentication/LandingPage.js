@@ -31,7 +31,7 @@ const LandingPage = props => {
 
   return (
     <div className="d-flex flex-column align-items-center">
-      <h1>Welcome to norms</h1>
+      <h3>Welcome to norms</h3>
       {success && <h5 className="text-success">Your account is created successfuly please log in</h5>}
       <div id="log-sing-vrap">
         <button

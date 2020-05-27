@@ -6,7 +6,10 @@
   margin: 0;
   box-sizing: border-box;
 }
-
+/* For outside click */
+.app-layout {
+  min-height: 100vh;
+}
 /* for dev purpose */
 .tests {
   max-width: 600px;
@@ -50,6 +53,9 @@
   .arrow-button {
     margin: 0px 10px 0px 25px;
   }
+  #profile-button {
+    left: 90px;
+  }
 }
 
 #SvgjsText4182 {
@@ -66,29 +72,55 @@
 }
 
 /* profile buutton */
-.profile-button {
+#profile-button {
   position: absolute;
   top: 10px;
   left: 110px;
-  margin-left: 20px;
   background: transparent;
   border: none;
-  user-select: none;
+  user-select: none !important;
+  outline: none !important;
 }
 
-.profile {
+#logout-button {
+  z-index: 5 !important;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 20px;
+}
+
+#profile-button svg {
+  width: 22px;
+  height: 22px;
+  fill: #5bc0de;
+
+}
+
+#profile {
   position: absolute;
   top: 50px;
   left: 70px;
-  width: 150px;
+  min-width: 150px;
   text-align: center;
+  height: 180px;
   max-height: 400px;
   overflow: hidden;
   border: 1px solid #5bc0de;
-  padding: 10px;
   border-radius: 15px;
-
+  padding: 10px;
+  z-index: 2;
 }
+
+#profile-layer {
+  z-index: 3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
 
 /* @media (min-width: 576px) { ... }
 

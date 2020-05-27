@@ -102,7 +102,7 @@ const Norms = () => {
   };
 
   return (
-    <div onClick={(el) => clearSearch(el)}>
+    <div onClick={(el) => clearSearch(el)} id="norms">
       <div
         style={add ? style : null}
         className="d-flex flex-column align-items-center"
@@ -167,4 +167,7 @@ if norm.len = 0 error on endWeek
 if first day usr uses app and it is last day of the mont error in reduce endmonth
 if users leng = 00 id
 log on refresh
+
+searchbox width
+profile buttn on responsive
 */

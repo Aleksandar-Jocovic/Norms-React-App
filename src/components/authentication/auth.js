@@ -9,10 +9,6 @@ class Auth {
       if (user.name === name) {
         action(user.userId)
       }
-      console.log(" login if stat")
-      console.log(user.name, user.pass)
-      console.log(name, password)
-
       this.authenticated = true;
     });
   }
@@ -35,8 +31,6 @@ class Auth {
   logout() {
     this.authenticated = false;
   }
-
-
 
   isAuthenticated() {
     return this.authenticated;
