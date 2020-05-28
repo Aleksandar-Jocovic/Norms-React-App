@@ -6,7 +6,10 @@
   margin: 0;
   box-sizing: border-box;
 }
-
+/* For outside click */
+.app-layout {
+  min-height: 100vh;
+}
 /* for dev purpose */
 .tests {
   max-width: 600px;
@@ -30,10 +33,12 @@
     -webkit-transform: translate(-30%);
     -ms-transform: translate(-30%);
     transform: translate(-30%);
+    width: 150px;
+
   }
   #search:focus,
   #search:active {
-    width: 140px;
+    width: 120px;
   }
 
   .month-year {
@@ -50,6 +55,9 @@
   .arrow-button {
     margin: 0px 10px 0px 25px;
   }
+  #profile-button {
+    left: 50px;
+  }
 }
 
 #SvgjsText4182 {
@@ -64,6 +72,57 @@
   margin: 0px 10px 0px 15px;
 }
 }
+
+/* profile buutton */
+#profile-button {
+  position: absolute;
+  top: 10px;
+  left: 110px;
+  background: transparent;
+  border: none;
+  user-select: none !important;
+  outline: none !important;
+}
+
+#logout-button {
+  z-index: 5 !important;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 20px;
+}
+
+#profile-button svg {
+  width: 22px;
+  height: 22px;
+  fill: #5bc0de;
+
+}
+
+#profile {
+  position: absolute;
+  top: 50px;
+  left: 70px;
+  min-width: 150px;
+  text-align: center;
+  height: 180px;
+  max-height: 400px;
+  overflow: hidden;
+  border: 1px solid #5bc0de;
+  border-radius: 15px;
+  padding: 10px;
+  z-index: 2;
+}
+
+#profile-layer {
+  z-index: 3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
 
 /* @media (min-width: 576px) { ... }
 

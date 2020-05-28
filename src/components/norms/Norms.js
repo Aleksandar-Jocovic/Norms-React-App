@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, /* useEffect */ } from 'react';
 import AddNorm from '../addNorm/AddNorm';
 import Normm from '../norm/Normm';
 
@@ -6,68 +6,72 @@ import { search } from './Search';
 import { GlobalContext } from '../../context/GlobalState';
 import './norms.css';
 
-import { endMonth, endWeek } from './SendData';
+import { endMonthTest, endWeekTest } from './SendData';
 
 const Norms = () => {
-  const { norms, endWeekAction, endMonthAction } = useContext(GlobalContext);
-  /* commented for dev purpose */
+  const { norms, endWeekAction, endMonthAction, users, currentUserId } = useContext(GlobalContext);
+
+  //comented for test purpose
+  //current day
   /*   const day = (() => {
       const date = new Date();
       const current = date.getDay();
       return current;
     })(); */
-  const [day, setDay] = useState(0)
 
-  /* commented for dev purpose */
-  // check if is last day of the month
+
+  //check if it is last day of the month
   /*   const date = new Date();
-    const isLast =
-      date.getDate() ===
+    const isLast = date.getDate() ===
       new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate(); */
-  const isLast = true;
-  const [test, setTest] = useState(false)
 
 
 
-
-  /* let isFirst = false; */
-
+  //condition to display add new norm 
   const [add, setAdd] = useState(false);
+  //user search 
   const [searchText, setSearchText] = useState('');
 
-  let index = norms.length - 1;
+  //index of last norm in the state
+  //let index = norms.length - 1;
 
-  useEffect(() => {
-    /* commented for dev purpose */
+  // Comented for test puropse
+  // useEffect(() => {
+  //   endWeek(
+  //     day,
+  //     norms[index].isDataSent,
+  //     norms,
+  //     endWeekAction,
+  //     norms[index].isMonthDataSent
+  //   );
 
-    /*     endWeek(
-          day,
-          norms[index].isDataSent,
-          norms,
-          endWeekAction,
-          norms[index].isMonthDataSent
-        );
-        endMonth(
-          isLast,
-          norms[index].isMonthDataSent,
-          norms,
-          endMonthAction,
-          isLast
-        ); */
-  }, []);
+  //   endMonth(
+  //     isLast,
+  //     norms[index].isMonthDataSent,
+  //     norms,
+  //     endMonthAction,
+  //     isLast
+  //   );
 
-  const go = () => {
-    endWeek(
-      day,
-      norms[index].isDataSent,
-      norms,
+  // }, []);
+
+  const goweek = () => {
+    endWeekTest(
+      users,
+      currentUserId,
       endWeekAction,
-      norms[index].isMonthDataSent
     );
-  };
-  console.log(day)
+  }
+  const gomonth = () => {
+    endMonthTest(
+      users,
+      currentUserId,
+      endMonthAction,
+    );
+  }
 
-  //arr tos tore search result
+
+  //arr of matched search result
   let machedNorms = search(norms, searchText);
 
   //clear search input
@@ -95,7 +99,7 @@ const Norms = () => {
   };
 
   return (
-    <div onClick={(el) => clearSearch(el)}>
+    <div onClick={(el) => clearSearch(el)} id="norms">
       <div
         style={add ? style : null}
         className="d-flex flex-column align-items-center"
@@ -104,34 +108,7 @@ const Norms = () => {
           <Normm key={norm.id} norm={norm} />
         ))}
 
-        {searchText === '' &&
-          norms.map((norm) => <Normm key={norm.id} norm={norm} />)}
-
-        <p>Tests for development purpose</p>
-        <button onClick={() => setTest(!test)} >tests</button>
-        {
-          test && (
-            <div>
-              <button onClick={go}>end week</button>
-
-
-              <div className="tests">
-                <p>Change day to monday only day when week data is seent </p>
-                <button onClick={() => setDay(0)}>
-                  change day to monday
-        </button>
-              </div>
-
-              <div className="tests">
-                <p>Change day to !monday to meet condition witch prevets sending data myltiple times a day</p>
-                <button onClick={() => setDay(1)}>
-                  change day
-        </button>
-              </div>
-
-              <p>|STEP1 > change day > end week (condison is toggled)| <br /> |STEP2 changeday to monday > end week (data is sent)|</p>
-            </div>)
-        }
+        {searchText === '' && norms.map((norm) => <Normm key={norm.id} norm={norm} />)}
 
       </div>
       <button className="btn btn-secondary  addBtn" onClick={handleClick}>
@@ -171,6 +148,13 @@ const Norms = () => {
       </div>
 
       {add && <AddNorm />}
+      <div className="d-flex flex-column align-items-center">
+        <p>buttons for test puropse</p>
+        <button className="btn btn-info" onClick={goweek}>end week</button>
+        <button className="btn btn-info my-1" onClick={gomonth}>end month</button>
+      </div>
+
+
     </div>
   );
 };
@@ -181,4 +165,5 @@ export default Norms;
 not full week find how to continue from that day
 if user dont open app on monday data won't be sent
 if norm.len = 0 error on endWeek
+if first day usr uses app and it is last day of the mont error in reduce endmonth
 */

@@ -1,13 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import Button from '../button/Button';
 import DeleteNorm from '../deleteNorm/DeleteNorm';
 import Info from './Info';
 import './norm.css';
 
-import { GlobalContext } from '../../context/GlobalState';
-
 const Norm = ({ norm }) => {
-  const { norms, } = useContext(GlobalContext);
 
   const [info, setInfo] = useState(false);
   const [deleteCondition, setDeleteCondition] = useState(false);
@@ -17,10 +14,6 @@ const Norm = ({ norm }) => {
   const setInfoFun = () => {
     setInfo(!info);
   };
-
-  // UPDATING LOCALSTORAGE
-  /*   localStorage.clear(); */
-  localStorage.setItem('norms', JSON.stringify(norms));
 
   const styleBtn = {
     transitionStyle: {

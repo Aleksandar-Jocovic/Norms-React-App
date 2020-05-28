@@ -1,62 +1,155 @@
-export const endWeek = (day, sent, items, action, monthSent, last) => {
-  let newNorms = [];
+export const endWeek = (day, sent, users, currentUser, action, monthSent, last) => {
 
   if (day !== 0 && sent) {
-    items.forEach((item) => {
-      item.isDataSent = false;
-      newNorms.push(item);
-    });
-    action(newNorms);
+    let usersUpdated = []
+
+    users.forEach(user => {
+      if (user.userId === currentUser) {
+        let normsUpdated = user.norms.map((norm) => {
+          norm.isDataSent = false;
+          return norm;
+        });
+        user.norms = normsUpdated
+        usersUpdated.push(user);
+      } else usersUpdated.push(user)
+    })
+
+    action(usersUpdated)
+
   } else if ((day === 0 && !sent) || (last && !monthSent)) {
-    items.forEach((item) => {
-      let newData = [...item.currentMonth];
-      newData.push(item.prog);
-      item.currentMonth = newData;
-      item.prog = 0;
-      item.comp = [false, false, false, false, false, false, false];
-      item.isDataSent = true;
+    let usersUpdated = []
 
-      newNorms.push(item);
+    users.forEach(user => {
+      if (user.userId === currentUser) {
+
+        let normsUpdated = user.norms.map((norm) => {
+          let newData = [...norm.currentMonth];
+          newData.push(norm.prog);
+          norm.currentMonth = newData;
+          norm.prog = 0;
+          norm.comp = [false, false, false, false, false, false, false];
+          norm.isDataSent = true;
+          return norm
+        })
+        user.norms = normsUpdated
+        usersUpdated.push(user)
+      } else usersUpdated.push(user)
     });
 
-    action(newNorms);
-  }
+    action(usersUpdated);
+
+  };
   return;
-};
+}
+
 
 const date = new Date();
 const newYear = date.getMonth === 0;
 
-export const endMonth = (last, sent, items, action) => {
+export const endMonth = (last, sent, users, currentUser, action) => {
   // endWeek();
+
   if (!last && sent) {
-    const newItems = items.map((item) => {
-      item.isMonthDataSent = false;
-      return item;
-    });
-    action(newItems);
-  } else if (last && !sent) {
-    let temp = [];
-    items.forEach((item) => {
-      //add month avreage to year
-      if (newYear) {
-        item.year = [];
-      }
-      const total = item.currentMonth.reduce((acc, cur) => acc + cur);
-      const avg = Math.floor(total / item.currentMonth.length);
-      item.year.push(avg);
-      temp.push(item);
-    });
+    let usersUpdated = [];
+    users.forEach(user => {
+      if (user.userId === currentUser) {
+        const normsUpdated = user.norms.map((norm) => {
+          norm.isMonthDataSent = false;
+          return norm;
+        });
+        user.norms = normsUpdated
+        usersUpdated.push(user)
+      } else usersUpdated.push(user)
+    })
+    action(usersUpdated)
+  } else {
 
-    const newItems = temp.map((item) => {
-      item.lastMonth = item.currentMonth;
-      item.currentMonth = [];
-      item.isMonthDataSent = true;
-      return item;
-    });
+    let usersUpdated = [];
 
-    action(newItems);
+    users.forEach(user => {
+      if (user.userId === currentUser) {
+        //all weeks values to calculate avg
+        let temp = [];
+        user.norms.forEach((norm) => {
+          //year part
+          if (newYear) {
+            norm.year = [];
+          }
+          const total = norm.currentMonth.reduce((acc, cur) => acc + cur);
+          const avg = Math.floor(total / norm.currentMonth.length);
+          norm.year.push(avg);
+          temp.push(norm);
+        });
+
+        const normsUpdated = temp.map((item) => {
+          //month part
+          item.lastMonth = item.currentMonth;
+          item.currentMonth = [];
+          item.isMonthDataSent = true;
+          return item;
+        });
+        user.norms = normsUpdated;
+        usersUpdated.push(user)
+      } else usersUpdated.push(user)
+    })
+    action(usersUpdated);
   }
-
   return;
 };
+
+// test
+export const endMonthTest = (users, currentUser, action) => {
+  let usersUpdated = [];
+  users.forEach(user => {
+    if (user.userId === currentUser) {
+      //all weeks values to calculate avg
+      let temp = [];
+      user.norms.forEach((norm) => {
+        //year part
+        if (newYear) {
+          norm.year = [];
+        }
+        const total = norm.currentMonth.reduce((acc, cur) => acc + cur);
+        const avg = Math.floor(total / norm.currentMonth.length);
+        norm.year.push(avg);
+        temp.push(norm);
+      });
+
+      const normsUpdated = temp.map((item) => {
+        //month part
+        item.lastMonth = item.currentMonth;
+        item.currentMonth = [];
+        item.isMonthDataSent = true;
+        return item;
+      });
+      user.norms = normsUpdated;
+      usersUpdated.push(user)
+    } else usersUpdated.push(user)
+  })
+  action(usersUpdated);
+}
+
+//test 
+
+export const endWeekTest = (users, currentUser, action, ) => {
+  let usersUpdated = []
+
+  users.forEach(user => {
+    if (user.userId === currentUser) {
+
+      let normsUpdated = user.norms.map((norm) => {
+        let newData = [...norm.currentMonth];
+        newData.push(norm.prog);
+        norm.currentMonth = newData;
+        norm.prog = 0;
+        norm.comp = [false, false, false, false, false, false, false];
+        norm.isDataSent = true;
+        return norm
+      })
+      user.norms = normsUpdated
+      usersUpdated.push(user)
+    } else usersUpdated.push(user)
+  });
+
+  action(usersUpdated);
+}

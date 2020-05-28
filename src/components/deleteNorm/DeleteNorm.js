@@ -6,13 +6,14 @@ import { GlobalContext } from '../../context/GlobalState';
 
 const DeleteNorm = ({ norm, setDeleteCondition, deleteCondition, info, }) => {
 
-  const { norms, deleteNorm } = useContext(GlobalContext);
+  const { norms, deleteNorm, currentUserId } = useContext(GlobalContext);
 
   const deleteNormFinal = () => {
-    deleteNorm(norm.id)
-    console.log(norms.length)
+    deleteNorm([currentUserId, norm.id])
     if (norms.length === 1) {
-      localStorage.clear();
+      //clearing ls if there is no norms lefttt
+      // but with users is difernt
+      /* localStorage.clear(); */
     }
   }
   const style = {

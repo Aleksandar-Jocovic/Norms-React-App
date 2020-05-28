@@ -1,0 +1,127 @@
+#log-sing-vrap {
+  width: fit-content;
+  margin: 20px;
+}
+#log-sing-button {
+  width: 111px;
+  background-color: transparent;
+  color: #fff;
+  font-size: 22px;
+  border: none;
+  display: inline-block;
+  user-select: none;
+  outline: none;
+}
+
+form {
+  position: relative;
+  top: 11px;
+  width: fit-content !important;
+}
+
+form .inputAuth {
+  width: 95% !important;
+}
+#error-msg {
+  position: absolute;
+  top: 40px;
+  z-index: 4;
+}
+#error-msg-password {
+  position: absolute;
+  top: 109px;
+  z-index: 4;
+}
+#inputAuth,
+#inputAuthPassword {
+  position: relative;
+  font-size: 1.2em;
+  padding: 30px 10px 10px 10px;
+  border: none;
+  border-bottom: 2px solid white;
+  background: transparent;
+  width: 100%;
+}
+
+#inputAuth:focus,
+#inputAuth:active,
+#inputAuthPassword:focus,
+#inputAuthPassword:active {
+  outline: 0px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+}
+
+#inputAuth,
+#inputAuthPassword,
+#labelAuth {
+  -webkit-transition: 0.6s ease;
+  -o-transition: 0.6s ease;
+  transition: 0.6s ease;
+  -ms-flex-item-align: start;
+  align-self: flex-start;
+  font-size: 1.2em;
+  color: #fff;
+}
+
+#labelAuth {
+  padding-left: 10px;
+  transform: translate(0px, -50px) scale(1.02);
+  margin-bottom: 2px;
+  cursor: text;
+  -webkit-transform-origin: left top;
+  -ms-transform-origin: left top;
+  transform-origin: left top;
+  color: white;
+  position: absolute;
+  z-index: -1;
+  opacity: 1;
+}
+
+#inputAuth:focus,
+#inputAuthPassword:focus,
+#input:not(:placeholder-shown) {
+  border-bottom: 2px solid #5bc0de;
+}
+
+#inputAuth:not(:placeholder-shown) ~ label,
+#inputAuth:focus ~ label,
+#inputAuthPassword:not(:placeholder-shown) ~ label,
+#inputAuthPassword:focus ~ label {
+  opacity: 1;
+  transform: translate(0px, -70px) scale(0.8);
+  padding-left: 0px;
+  color: #5bc0de;
+}
+
+#inputAuth::-webkit-input-placeholder,
+#inputAuthPassword::-webkit-input-placeholder {
+  opacity: 1;
+}
+
+#inputAuth::-moz-placeholder,
+#inputAuthPassword::-moz-placeholder {
+  opacity: 1;
+}
+
+#inputAuth:-ms-input-placeholder,
+#inputAuthPassword:-ms-input-placeholder {
+  opacity: 1;
+}
+
+#inputAuth::placeholder,
+#inputAuthPassword::placeholder{
+  opacity: 1;
+}
+
+.password-hidden-btn {
+  position: absolute;
+  right: 15px;
+  top: 80px;
+  background: transparent;
+  border: none;
+  color: #5bc0de;
+  user-select: none;
+  outline: none;
+}

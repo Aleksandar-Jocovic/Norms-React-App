@@ -4,42 +4,45 @@ import './button.css';
 
 const Button = ({ comp, name, value }) => {
   const { checkDay } = useContext(GlobalContext);
-  const { norms } = useContext(GlobalContext);
+  const { users, currentUserId } = useContext(GlobalContext);
 
   const handleClick = (e) => {
     const btnName = e.target.name;
     const btnValue = e.target.value;
 
-    const check = () => {
-      let newNorms = [];
-      norms.forEach((item) => {
-        if (item.name === btnName) {
-          item.comp[btnValue] = !item.comp[btnValue];
-          //uslov za progres
-          if (item.comp[btnValue]) {
-            // +
-            let numToAdd = Math.floor(100 / item.repeat);
-            let newNum = item.prog + numToAdd;
-            if (newNum > 85 && newNum < 100) {
-              newNum = 100;
-            }
-            item.prog = newNum;
-          } else {
-            // -
-            let numToSubstract = Math.floor(100 / item.repeat);
-            let num = item.prog - numToSubstract;
-            if (num <= 0) num = 0;
-            //if item.completeed true > 100
-            item.prog = num;
-          }
-        }
-        newNorms.push(item);
-      });
+    let usersUpdated = []
+    users.forEach(user => {
 
-      return newNorms;
-    };
-    checkDay(check());
+      if (user.userId === currentUserId) {
+        let normsUpdated = user.norms.map(item => {
+          if (item.name === btnName) {
+            item.comp[btnValue] = !item.comp[btnValue];
+            //condition for progress
+            if (item.comp[btnValue]) {
+              // + increase progress
+              let numToAdd = Math.floor(100 / item.repeat);
+              let newNum = item.prog + numToAdd;
+              if (newNum > 85 && newNum < 100) {
+                newNum = 100;
+              }
+              item.prog = newNum;
+            } else {
+              // - decrease proggres
+              let numToSubstract = Math.floor(100 / item.repeat);
+              let num = item.prog - numToSubstract;
+              if (num <= 0) num = 0;
+              item.prog = num;
+            }
+          }
+          return item;
+        });
+        user.norms = normsUpdated;
+        usersUpdated.push(user);
+      } else usersUpdated.push(user);
+    })
+    checkDay(usersUpdated)
   };
+
 
   return (
     <button id="button" name={name} value={value} onClick={handleClick}>

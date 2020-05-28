@@ -9,7 +9,7 @@ const AddNorm = () => {
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("**name can't be blank");
 
-  const { addNorm, norms } = useContext(GlobalContext);
+  const { addNormAction, norms, users, currentUserId, globalSTATE } = useContext(GlobalContext);
 
   const id = norms.length + 1;
 
@@ -31,9 +31,26 @@ const AddNorm = () => {
       isDataSent: false,
       isMonthDataSent: false,
     };
+
     if (newName !== '' && !isTaken) {
-      addNorm(newNorm);
-      setError(false);
+      let userWithNewNorm = users.map(user => {
+        if (user.userId === currentUserId) {
+          user.norms.push(newNorm)
+          return user;
+        } else return user;
+      })
+      console.log("userWith", userWithNewNorm)
+      console.log(currentUserId)
+      console.log("usersGS", users)
+      console.log("GLOBA", globalSTATE)
+
+
+      addNormAction(userWithNewNorm);
+      console.log("usersGS after action", users)
+      console.log("GLOBA after actio", globalSTATE)
+
+
+      if (error === true) setError(false);
     } else {
       setError(true);
 

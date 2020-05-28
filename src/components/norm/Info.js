@@ -8,31 +8,39 @@ import Year from '../../apex/Year';
 import { GlobalContext } from '../../context/GlobalState';
 
 const Info = ({ norm, info, setInfoFun }) => {
-  const { norms, changeRepeatAction, deleteNorm } = useContext(GlobalContext);
+  const { users, changeRepeatAction, currentUserId, globalSTATE } = useContext(GlobalContext);
 
   const [selectYear, setSelectYear] = useState(false);
   const [edit, setEdit] = useState(false);
 
   const editFun = () => {
     setEdit(!edit);
+    // if (edit) {
+    //   setInfoFun(false);
+    // }
   };
 
-  const changeRepeat = (e) => {
+  const changeRepeat = e => {
     const name = +e.target.name;
     const value = +e.target.value;
+    let usersUpdated = users.map(user => {
+      if (user.userId === currentUserId) {
+        user.norms.forEach((item) => {
+          if (item.id === name) {
+            item.repeat = +value;
 
-    norms.map((item) => {
-      if (item.id === name) {
-        item.repeat = +value;
+            let num = Math.floor(100 / item.repeat);
+            let numToMulty = item.comp.filter((el) => el === true);
 
-        let num = Math.floor(100 / item.repeat);
-        let numToMulty = item.comp.filter((el) => el === true);
-
-        item.prog = num * numToMulty.length;
-        changeRepeatAction(item);
+            item.prog = num * numToMulty.length;
+          }
+        });
+        return user
       }
-      return item;
-    });
+      return user
+    })
+    changeRepeatAction(usersUpdated);
+    localStorage.setItem('state-norms', JSON.stringify(globalSTATE));
   };
 
   const styleBtn = {
@@ -59,6 +67,7 @@ const Info = ({ norm, info, setInfoFun }) => {
         >
           {!edit ? 'Edit' : 'Confirm'}
         </button>
+
 
         {edit && (
           <div className="d-flex" onClick={changeRepeat}>
@@ -115,7 +124,6 @@ const Info = ({ norm, info, setInfoFun }) => {
       <div className="row">
         <div className="col-12 text-center">
           <button
-            /* id="delete-info-btn" */
             className="btn btn-info p-0 arrow-info-button m-3"
             onClick={setInfoFun}
           >
@@ -132,7 +140,7 @@ const Info = ({ norm, info, setInfoFun }) => {
           </button>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

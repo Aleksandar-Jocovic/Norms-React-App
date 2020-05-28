@@ -3,7 +3,7 @@ import Chart from 'react-apexcharts';
 
 import { GlobalContext } from '../context/GlobalState';
 
-const Charts = (props) => {
+const Charts = () => {
   const { norms } = useContext(GlobalContext);
 
   const data = (() => {

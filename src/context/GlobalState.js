@@ -1,34 +1,45 @@
-import React, { createContext, useReducer, useEffect } from 'react';
+import React, { createContext, useReducer } from 'react';
 import AppReducer from './AppReducer';
 
 //initial state
-const getNorms = () => {
-  let normss;
-  if (localStorage.getItem('norms') === null) {
-    normss = [
-      {
-        name: 'Example',
-        id: 1,
-        prog: 0,
-        comp: [false, false, false, false, false, false, false],
-        currentMonth: [10, 30, 40,],
-        lastMonth: [60, 70, 50, 90],
-        year: [70, 60, 70, 80, 70, 80, 85, 80, 90, 100, 95, 100],
-        repeat: 1,
-        isDataSent: false,
-        isMonthDataSent: false,
-      }
-    ];
-  } else {
-    normss = JSON.parse(localStorage.getItem('norms'));
-  }
-  return normss;
-};
-const stateLocalStorage = getNorms();
+const getLocalStorageState = () => {
 
-const initialState = {
-  norms: stateLocalStorage,
+  let state;
+  if (localStorage.getItem('state-norms') === null) {
+    state = {
+      currentUserId: 0,
+      authenticated: true,
+      users: [
+
+        {
+          name: 'w',
+          pass: 'w',
+          userId: 0,
+          norms: [
+            {
+              name: 'Example',
+              id: 1,
+              prog: 0,
+              comp: [false, false, false, false, false, false, false],
+              currentMonth: [10, 30, 40,],
+              lastMonth: [60, 70, 50, 90],
+              year: [70, 60, 70, 80, 70, 80, 85, 80, 90, 100, 95, 100],
+              repeat: 1,
+              isDataSent: false,
+              isMonthDataSent: false,
+            }
+          ]
+        }
+      ]
+    }
+  } else {
+    state = JSON.parse(localStorage.getItem('state-norms'));
+  }
+  return state;
 };
+const stateLocalStorage = getLocalStorageState();
+
+const initialState = stateLocalStorage;
 
 // Create context
 export const GlobalContext = createContext(initialState);
@@ -43,13 +54,16 @@ export const GlobalProvider = ({ children }) => {
       type: 'DELETE_NORM',
       payload: id,
     });
+    console.log('actin')
+
   }
 
-  function addNorm(norm) {
+  function addNormAction(users) {
     dispatch({
       type: 'ADD_NORM',
-      payload: norm,
+      payload: users,
     });
+    console.log(' actin')
   }
 
   function checkDay(norms) {
@@ -57,39 +71,72 @@ export const GlobalProvider = ({ children }) => {
       type: 'CHECK_DAY',
       payload: norms,
     });
+    console.log('actin')
+
   }
 
-  function endWeekAction(norms) {
+  function endWeekAction(user) {
     dispatch({
       type: 'END_WEEK',
-      payload: norms,
+      payload: user,
     });
+    console.log('actin')
+
   }
 
-  function endMonthAction(norms) {
+  function endMonthAction(users) {
     dispatch({
       type: 'END_MONTH',
-      payload: norms,
+      payload: users,
     });
+    console.log('actin')
+
   }
 
-  function changeRepeatAction(norm) {
+  function changeRepeatAction(users) {
     dispatch({
       type: 'CHANGE_REPEAT',
-      payload: norm,
+      payload: users,
+    });
+    console.log('actin')
+
+  }
+
+  function singInAction(user) {
+    dispatch({
+      type: 'SING_IN',
+      payload: user,
+    });
+    console.log(' actin')
+
+  }
+
+  function changeUserAction(newid) {
+    dispatch({
+      type: 'CHANGE_CURRENT_USER',
+      payload: newid,
     });
   }
 
+  console.log(state)
+  // UPDATING LOCALSTORAGE
+  /*   localStorage.clear(); */
+  localStorage.setItem('state-norms', JSON.stringify(state));
   return (
     <GlobalContext.Provider
       value={{
-        norms: state.norms,
+        globalSTATE: state,
+        currentUserId: state.currentUserId,
+        users: state.users,
+        norms: state.users[state.currentUserId].norms,
         deleteNorm,
-        addNorm,
+        addNormAction,
         checkDay,
         endWeekAction,
         endMonthAction,
         changeRepeatAction,
+        singInAction,
+        changeUserAction
       }}
     >
       {children}
