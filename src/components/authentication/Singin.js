@@ -23,7 +23,7 @@ const Singin = ({ setUserName, setPassword, setSuccess, setLogin }) => {
     let takenNames = users.map(user => user.name)
 
     if (!takenNames.includes(singInUsername) && singInPassword.length > 5
-      && singInUsername != '') {
+      && singInUsername !== '') {
       return true
     }
     if (singInUsername === '') {

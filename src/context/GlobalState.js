@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useEffect } from 'react';
+import React, { createContext, useReducer } from 'react';
 import AppReducer from './AppReducer';
 
 //initial state
@@ -93,10 +93,10 @@ export const GlobalProvider = ({ children }) => {
 
   }
 
-  function changeRepeatAction(norm) {
+  function changeRepeatAction(users) {
     dispatch({
       type: 'CHANGE_REPEAT',
-      payload: norm,
+      payload: users,
     });
     console.log('actin')
 

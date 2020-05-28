@@ -1,14 +1,10 @@
-import React, { useState, useContext } from 'react'
-import auth from './auth'
+import React, { useState } from 'react'
 import './landingPage.css'
 import Login from './Login'
 import Singin from './Singin'
 
-import { GlobalContext } from '../../context/GlobalState';
 
 const LandingPage = props => {
-
-  const { users, singInAction, changeUserAction, globalSTATE } = useContext(GlobalContext);
 
   const [success, setSuccess] = useState(false)
   const [login, setLogin] = useState(true);

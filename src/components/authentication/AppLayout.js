@@ -13,7 +13,7 @@ const AppLayout = (props) => {
 
   const currentUserName = () => {
     let name;
-    users.map(user => {
+    users.forEach(user => {
       if (currentUserId === user.userId) {
         name = user.name;
       }
@@ -22,7 +22,6 @@ const AppLayout = (props) => {
   }
 
   const handleClick = (e) => {
-    console.log(e.target)
     if (profile === true && (e.target.id !== "profile-layer" || e.target.id === '')) {
       setProfile(false);
     } else return

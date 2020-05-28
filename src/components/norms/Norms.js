@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, /* useEffect */ } from 'react';
 import AddNorm from '../addNorm/AddNorm';
 import Normm from '../norm/Normm';
 
@@ -6,23 +6,25 @@ import { search } from './Search';
 import { GlobalContext } from '../../context/GlobalState';
 import './norms.css';
 
-import { endMonth, endWeek } from './SendData';
+import { endMonthTest, endWeekTest } from './SendData';
 
 const Norms = () => {
   const { norms, endWeekAction, endMonthAction, users, currentUserId } = useContext(GlobalContext);
+
+  //comented for test purpose
   //current day
   /*   const day = (() => {
       const date = new Date();
       const current = date.getDay();
       return current;
     })(); */
-  const day = 0;
+
 
   //check if it is last day of the month
   /*   const date = new Date();
     const isLast = date.getDate() ===
       new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate(); */
-  const isLast = true;
+
 
 
   //condition to display add new norm 
@@ -31,42 +33,37 @@ const Norms = () => {
   const [searchText, setSearchText] = useState('');
 
   //index of last norm in the state
-  let index = norms.length - 1;
+  //let index = norms.length - 1;
 
-  useEffect(() => {
-    /*     endWeek(
-          day,
-          norms[index].isDataSent,
-          norms,
-          endWeekAction,
-          norms[index].isMonthDataSent
-        ); */
-    /*
-    endMonth(
-      isLast,
-      norms[index].isMonthDataSent,
-      norms,
-      endMonthAction,
-      isLast
-    );
-     */
-  }, []);
+  // Comented for test puropse
+  // useEffect(() => {
+  //   endWeek(
+  //     day,
+  //     norms[index].isDataSent,
+  //     norms,
+  //     endWeekAction,
+  //     norms[index].isMonthDataSent
+  //   );
+
+  //   endMonth(
+  //     isLast,
+  //     norms[index].isMonthDataSent,
+  //     norms,
+  //     endMonthAction,
+  //     isLast
+  //   );
+
+  // }, []);
 
   const goweek = () => {
-    endWeek(
-      day,
-      norms[index].isDataSent,
+    endWeekTest(
       users,
       currentUserId,
       endWeekAction,
-      norms[index].isMonthDataSent,
-      isLast
     );
   }
   const gomonth = () => {
-    endMonth(
-      isLast,
-      norms[index].isMonthDataSent,
+    endMonthTest(
       users,
       currentUserId,
       endMonthAction,
@@ -151,8 +148,12 @@ const Norms = () => {
       </div>
 
       {add && <AddNorm />}
-      <button onClick={goweek}>goweek</button>
-      <button onClick={gomonth}>gomonth</button>
+      <div className="d-flex flex-column align-items-center">
+        <p>buttons for test puropse</p>
+        <button className="btn btn-info" onClick={goweek}>end week</button>
+        <button className="btn btn-info my-1" onClick={gomonth}>end month</button>
+      </div>
+
 
     </div>
   );
@@ -165,7 +166,4 @@ not full week find how to continue from that day
 if user dont open app on monday data won't be sent
 if norm.len = 0 error on endWeek
 if first day usr uses app and it is last day of the mont error in reduce endmonth
-if users leng = 00 id
-log on refresh
-// edit days local storage dont save
 */

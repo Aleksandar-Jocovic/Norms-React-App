@@ -1,8 +1,6 @@
 export default (state, action) => {
   switch (action.type) {
     case 'DELETE_NORM': {
-      console.log(action.payload)
-
       return {
         ...state,
         users: state.users.map(item => {
@@ -37,7 +35,7 @@ export default (state, action) => {
     case 'CHANGE_REPAEAT':
       return {
         ...state,
-        norms: [action.payload, ...state.norms],
+        users: action.payload
       };
     case 'SING_IN':
       return {

@@ -26,7 +26,6 @@ class Auth {
   }
 
   singin(users, singName, singPassword, singInAct, success, setUserName, setPassword, setLogin) {
-    console.log('sing in', singPassword.length)
     const newuser = {
       name: singName,
       pass: singPassword,

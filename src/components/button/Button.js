@@ -4,14 +4,13 @@ import './button.css';
 
 const Button = ({ comp, name, value }) => {
   const { checkDay } = useContext(GlobalContext);
-  const { norms, users, currentUserId } = useContext(GlobalContext);
+  const { users, currentUserId } = useContext(GlobalContext);
 
   const handleClick = (e) => {
     const btnName = e.target.name;
     const btnValue = e.target.value;
 
     let usersUpdated = []
-    console.log(users)
     users.forEach(user => {
 
       if (user.userId === currentUserId) {
