@@ -3,13 +3,14 @@ import { GlobalContext } from '../../context/GlobalState';
 import './addNorm.css';
 
 const AddNorm = () => {
+
+  const { addNormAction, norms, users, currentUserId } = useContext(GlobalContext);
+
   const [newName, setnewName] = useState('');
   const [daysToRepeat, setDaysToRepeat] = useState(1);
 
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("**name can't be blank");
-
-  const { addNormAction, norms, users, currentUserId, globalSTATE } = useContext(GlobalContext);
 
   const id = norms.length + 1;
 
@@ -39,16 +40,7 @@ const AddNorm = () => {
           return user;
         } else return user;
       })
-      console.log("userWith", userWithNewNorm)
-      console.log(currentUserId)
-      console.log("usersGS", users)
-      console.log("GLOBA", globalSTATE)
-
-
       addNormAction(userWithNewNorm);
-      console.log("usersGS after action", users)
-      console.log("GLOBA after actio", globalSTATE)
-
 
       if (error === true) setError(false);
     } else {

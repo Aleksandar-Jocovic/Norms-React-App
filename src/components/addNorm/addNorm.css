@@ -2,7 +2,7 @@
   position: absolute;
   top: 60px;
   right: 10px;
-  width: 60%;
+  /* width: fit-content; */
   background: #4e5d6c;
   padding: 40px;
   border-radius: 15px;

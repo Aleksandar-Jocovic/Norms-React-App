@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react'
 import auth from './auth'
-
 import './landingPage.css'
 
 import { GlobalContext } from '../../context/GlobalState';

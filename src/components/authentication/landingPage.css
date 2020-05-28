@@ -1,4 +1,6 @@
 #log-sing-vrap {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   margin: 20px;
 }
@@ -9,13 +11,18 @@
   font-size: 22px;
   border: none;
   display: inline-block;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   outline: none;
 }
 
 form {
   position: relative;
   top: 11px;
+  width: -webkit-fit-content !important;
+  width: -moz-fit-content !important;
   width: fit-content !important;
 }
 
@@ -67,7 +74,9 @@ form .inputAuth {
 
 #labelAuth {
   padding-left: 10px;
-  transform: translate(0px, -50px) scale(1.02);
+  -webkit-transform: translate(0px, -50px) scale(1.02);
+      -ms-transform: translate(0px, -50px) scale(1.02);
+          transform: translate(0px, -50px) scale(1.02);
   margin-bottom: 2px;
   cursor: text;
   -webkit-transform-origin: left top;
@@ -90,7 +99,9 @@ form .inputAuth {
 #inputAuthPassword:not(:placeholder-shown) ~ label,
 #inputAuthPassword:focus ~ label {
   opacity: 1;
-  transform: translate(0px, -70px) scale(0.8);
+  -webkit-transform: translate(0px, -70px) scale(0.8);
+      -ms-transform: translate(0px, -70px) scale(0.8);
+          transform: translate(0px, -70px) scale(0.8);
   padding-left: 0px;
   color: #5bc0de;
 }
@@ -110,6 +121,22 @@ form .inputAuth {
   opacity: 1;
 }
 
+#inputAuth::-webkit-input-placeholder, #inputAuthPassword::-webkit-input-placeholder{
+  opacity: 1;
+}
+
+#inputAuth::-moz-placeholder, #inputAuthPassword::-moz-placeholder{
+  opacity: 1;
+}
+
+#inputAuth:-ms-input-placeholder, #inputAuthPassword:-ms-input-placeholder{
+  opacity: 1;
+}
+
+#inputAuth::-ms-input-placeholder, #inputAuthPassword::-ms-input-placeholder{
+  opacity: 1;
+}
+
 #inputAuth::placeholder,
 #inputAuthPassword::placeholder{
   opacity: 1;
@@ -122,6 +149,9 @@ form .inputAuth {
   background: transparent;
   border: none;
   color: #5bc0de;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   outline: none;
 }

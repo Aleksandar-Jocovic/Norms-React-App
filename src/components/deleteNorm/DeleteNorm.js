@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import './deleteNorm.css';
 
 import { GlobalContext } from '../../context/GlobalState';
 

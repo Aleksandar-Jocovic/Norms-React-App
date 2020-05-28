@@ -90,9 +90,8 @@ const Login = ({ props, setUserName, setPassword, username, password }) => {
             props.history.push("/app")
           }
 
-
           if (!auth.authenticated) {
-            props.history.push("/Norms-React-App")
+            props.history.push("/")
           }
         }}
       >Log in</button>

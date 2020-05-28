@@ -17,6 +17,18 @@
   text-align: center;
 }
 
+
+ 
+@media (max-width: 768px) {
+  .card {
+    width: 95%;
+  }
+  #delete-button,
+.arrow-button {
+  margin: 0px 10px 0px 15px;
+}
+}
+
 @media (max-width: 576px) {
   .app .row .mixed-chart {
     width: 90%;
@@ -26,7 +38,7 @@
     top: 70px;
     right: unset;
     width: 95%;
-    padding: 20px;
+    padding: 10px;
   }
 
   #search-box {
@@ -48,7 +60,6 @@
 
   .card {
     border-radius: 0px !important;
-    /* border-left: 2px solid rgba(255, 255, 255, 0.7) !important; */
     width: 95% !important;
   }
   #delete-button,
@@ -63,15 +74,14 @@
 #SvgjsText4182 {
   position: absolute;
 }
-@media (max-width: 768px) {
-  .card {
-    width: 95%;
+
+@media (max-width: 340px) {
+  .addNorm {
+    padding: 0;
   }
-  #delete-button,
-.arrow-button {
-  margin: 0px 10px 0px 15px;
-}
-}
+ }
+
+
 
 /* profile buutton */
 #profile-button {
@@ -123,19 +133,3 @@
   width: 100%;
 }
 
-
-/* @media (min-width: 576px) { ... }
-
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) { ... }
-
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) { ... }
-
-// Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) { ... }
-
-@include media-breakpoint-up(sm) { ... }
-@include media-breakpoint-up(md) { ... }
-@include media-breakpoint-up(lg) { ... }
-@include media-breakpoint-up(xl) { ... } */

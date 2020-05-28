@@ -5,11 +5,10 @@ import auth from './auth';
 
 import { GlobalContext } from '../../context/GlobalState';
 
-
 const AppLayout = (props) => {
 
-  const [profile, setProfile] = useState(false);
   const { currentUserId, norms, users } = useContext(GlobalContext)
+  const [profile, setProfile] = useState(false);
 
   const currentUserName = () => {
     let name;
@@ -21,7 +20,7 @@ const AppLayout = (props) => {
     return name
   }
 
-  const handleClick = (e) => {
+  const handleClick = e => {
     if (profile === true && (e.target.id !== "profile-layer" || e.target.id === '')) {
       setProfile(false);
     } else return

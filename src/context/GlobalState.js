@@ -54,8 +54,6 @@ export const GlobalProvider = ({ children }) => {
       type: 'DELETE_NORM',
       payload: id,
     });
-    console.log('actin')
-
   }
 
   function addNormAction(users) {
@@ -63,7 +61,6 @@ export const GlobalProvider = ({ children }) => {
       type: 'ADD_NORM',
       payload: users,
     });
-    console.log(' actin')
   }
 
   function checkDay(norms) {
@@ -71,8 +68,6 @@ export const GlobalProvider = ({ children }) => {
       type: 'CHECK_DAY',
       payload: norms,
     });
-    console.log('actin')
-
   }
 
   function endWeekAction(user) {
@@ -80,8 +75,6 @@ export const GlobalProvider = ({ children }) => {
       type: 'END_WEEK',
       payload: user,
     });
-    console.log('actin')
-
   }
 
   function endMonthAction(users) {
@@ -89,8 +82,6 @@ export const GlobalProvider = ({ children }) => {
       type: 'END_MONTH',
       payload: users,
     });
-    console.log('actin')
-
   }
 
   function changeRepeatAction(users) {
@@ -98,8 +89,6 @@ export const GlobalProvider = ({ children }) => {
       type: 'CHANGE_REPEAT',
       payload: users,
     });
-    console.log('actin')
-
   }
 
   function singInAction(user) {
@@ -107,8 +96,6 @@ export const GlobalProvider = ({ children }) => {
       type: 'SING_IN',
       payload: user,
     });
-    console.log(' actin')
-
   }
 
   function changeUserAction(newid) {
@@ -118,10 +105,9 @@ export const GlobalProvider = ({ children }) => {
     });
   }
 
-  console.log(state)
   // UPDATING LOCALSTORAGE
-  /*   localStorage.clear(); */
   localStorage.setItem('state-norms', JSON.stringify(state));
+
   return (
     <GlobalContext.Provider
       value={{
