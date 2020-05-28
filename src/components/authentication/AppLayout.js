@@ -47,7 +47,7 @@ const AppLayout = (props) => {
             id="logout-button"
             onClick={() => {
               auth.logout();
-              props.history.push("/Norms-React-App")
+              props.history.push("/")
             }}
           >
             Logout
