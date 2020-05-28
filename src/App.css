@@ -33,10 +33,12 @@
     -webkit-transform: translate(-30%);
     -ms-transform: translate(-30%);
     transform: translate(-30%);
+    width: 150px;
+
   }
   #search:focus,
   #search:active {
-    width: 140px;
+    width: 120px;
   }
 
   .month-year {
@@ -54,7 +56,7 @@
     margin: 0px 10px 0px 25px;
   }
   #profile-button {
-    left: 90px;
+    left: 50px;
   }
 }
 

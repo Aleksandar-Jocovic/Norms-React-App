@@ -32,7 +32,8 @@ form .inputAuth {
   top: 109px;
   z-index: 4;
 }
-#inputAuth {
+#inputAuth,
+#inputAuthPassword {
   position: relative;
   font-size: 1.2em;
   padding: 30px 10px 10px 10px;
@@ -43,7 +44,9 @@ form .inputAuth {
 }
 
 #inputAuth:focus,
-#inputAuth:active {
+#inputAuth:active,
+#inputAuthPassword:focus,
+#inputAuthPassword:active {
   outline: 0px;
   -webkit-box-shadow: none;
   box-shadow: none;
@@ -51,6 +54,7 @@ form .inputAuth {
 }
 
 #inputAuth,
+#inputAuthPassword,
 #labelAuth {
   -webkit-transition: 0.6s ease;
   -o-transition: 0.6s ease;
@@ -76,35 +80,38 @@ form .inputAuth {
 }
 
 #inputAuth:focus,
+#inputAuthPassword:focus,
 #input:not(:placeholder-shown) {
   border-bottom: 2px solid #5bc0de;
 }
 
 #inputAuth:not(:placeholder-shown) ~ label,
-#inputAuth:focus ~ label {
+#inputAuth:focus ~ label,
+#inputAuthPassword:not(:placeholder-shown) ~ label,
+#inputAuthPassword:focus ~ label {
   opacity: 1;
   transform: translate(0px, -70px) scale(0.8);
   padding-left: 0px;
   color: #5bc0de;
 }
 
-#inputAuth::-webkit-input-placeholder {
+#inputAuth::-webkit-input-placeholder,
+#inputAuthPassword::-webkit-input-placeholder {
   opacity: 1;
 }
 
-#inputAuth::-moz-placeholder {
+#inputAuth::-moz-placeholder,
+#inputAuthPassword::-moz-placeholder {
   opacity: 1;
 }
 
-#inputAuth:-ms-input-placeholder {
+#inputAuth:-ms-input-placeholder,
+#inputAuthPassword:-ms-input-placeholder {
   opacity: 1;
 }
 
-#inputAuth::-ms-input-placeholder {
-  opacity: 1;
-}
-
-#inputAuth::placeholder {
+#inputAuth::placeholder,
+#inputAuthPassword::placeholder{
   opacity: 1;
 }
 

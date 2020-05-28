@@ -49,6 +49,7 @@ export default (state, action) => {
         currentUserId: action.payload,
         users: [...state.users]
       };
+
     default:
       return state;
   }

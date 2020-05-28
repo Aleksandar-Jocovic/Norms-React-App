@@ -1,8 +1,18 @@
+const getLocalStoreageAuthenticated = () => {
+  if (localStorage.getItem('state-norms-auth') === null) {
+    return false
+  } else {
+    return JSON.parse(localStorage.getItem('state-norms-auth'));
+  }
+};
+
 
 class Auth {
   constructor() {
-    this.authenticated = false;
+    //this.authenticated = false;
+    this.authenticated = getLocalStoreageAuthenticated()
   }
+
 
   login(users, name, password, action) {
     users.forEach(user => {
@@ -10,6 +20,8 @@ class Auth {
         action(user.userId)
       }
       this.authenticated = true;
+
+      localStorage.setItem('state-norms-auth', JSON.stringify(true));
     });
   }
 
@@ -29,7 +41,9 @@ class Auth {
   }
 
   logout() {
-    this.authenticated = false;
+    //this.authenticated = false;
+    localStorage.setItem('state-norms-auth', JSON.stringify(true));
+
   }
 
   isAuthenticated() {

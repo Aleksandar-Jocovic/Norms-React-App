@@ -1,120 +1,45 @@
 import React, { createContext, useReducer, useEffect } from 'react';
 import AppReducer from './AppReducer';
 
-/* //initial state
-const getNorms = () => {
-  let users;
-  if (localStorage.getItem('norms') === null) {
-    users = [
-      {
-        name: 'test',
-        pass: '1234',
-        normss: [
-          {
-            name: 'Example',
-            id: 1,
-            prog: 0,
-            comp: [false, false, false, false, false, false, false],
-            currentMonth: [10, 30, 40,],
-            lastMonth: [60, 70, 50, 90],
-            year: [70, 60, 70, 80, 70, 80, 85, 80, 90, 100, 95, 100],
-            repeat: 1,
-            isDataSent: false,
-            isMonthDataSent: false,
-          }
-        ]
-      },
-      {
-        name: 'test',
-        pass: '1234',
-        normss: [
-          {
-            name: 'Example',
-            id: 1,
-            prog: 0,
-            comp: [false, false, false, false, false, false, false],
-            currentMonth: [10, 30, 40,],
-            lastMonth: [60, 70, 50, 90],
-            year: [70, 60, 70, 80, 70, 80, 85, 80, 90, 100, 95, 100],
-            repeat: 1,
-            isDataSent: false,
-            isMonthDataSent: false,
-          }
-        ]
-      }
-    ]
+//initial state
+const getLocalStorageState = () => {
 
-  } else {
-    normss = JSON.parse(localStorage.getItem('norms'));
-  }
-  return normss;
-};
-const stateLocalStorage = getNorms();
+  let state;
+  if (localStorage.getItem('state-norms') === null) {
+    state = {
+      currentUserId: 0,
+      authenticated: true,
+      users: [
 
-const initialState = {
-  users: stateLocalStorage,
-}; */
-
-const initialState = {
-  currentUserId: 1,
-  users: [
-
-    {
-      name: 'w',
-      pass: 'w',
-      userId: 0,
-      norms: [
         {
-          name: 'Example',
-          id: 1,
-          prog: 0,
-          comp: [false, false, false, false, false, false, false],
-          currentMonth: [10, 30, 40,],
-          lastMonth: [60, 70, 50, 90],
-          year: [70, 60, 70, 80, 70, 80, 85, 80, 90, 100, 95, 100],
-          repeat: 1,
-          isDataSent: false,
-          isMonthDataSent: false,
-        }
-      ]
-    },
-    {
-      name: 'q',
-      pass: 'q',
-      userId: 1,
-      norms: [
-        {
-          name: 'Example',
-          id: 2,
-          prog: 0,
-          comp: [false, false, false, false, false, false, false],
-          currentMonth: [10, 30, 40,],
-          lastMonth: [60, 70, 50, 90],
-          year: [70, 60, 70, 80, 70, 80, 85, 80, 90, 100, 95, 100],
-          repeat: 1,
-          isDataSent: false,
-          isMonthDataSent: false,
-        },
-        {
-          name: 'q',
-          id: 1,
-          prog: 0,
-          comp: [false, false, false, false, false, false, false],
-          currentMonth: [10, 30, 40,],
-          lastMonth: [60, 70, 50, 90],
-          year: [70, 60, 70, 80, 70, 80, 85, 80, 90, 100, 95, 100],
-          repeat: 1,
-          isDataSent: false,
-          isMonthDataSent: true,
+          name: 'w',
+          pass: 'w',
+          userId: 0,
+          norms: [
+            {
+              name: 'Example',
+              id: 1,
+              prog: 0,
+              comp: [false, false, false, false, false, false, false],
+              currentMonth: [10, 30, 40,],
+              lastMonth: [60, 70, 50, 90],
+              year: [70, 60, 70, 80, 70, 80, 85, 80, 90, 100, 95, 100],
+              repeat: 1,
+              isDataSent: false,
+              isMonthDataSent: false,
+            }
+          ]
         }
       ]
     }
+  } else {
+    state = JSON.parse(localStorage.getItem('state-norms'));
+  }
+  return state;
+};
+const stateLocalStorage = getLocalStorageState();
 
-  ]
-}
-
-//when you log in your name goes in first place
-// when you login globalstate provide first loged user or maybe it si only onne
+const initialState = stateLocalStorage;
 
 // Create context
 export const GlobalContext = createContext(initialState);
@@ -194,6 +119,9 @@ export const GlobalProvider = ({ children }) => {
   }
 
   console.log(state)
+  // UPDATING LOCALSTORAGE
+  /*   localStorage.clear(); */
+  localStorage.setItem('state-norms', JSON.stringify(state));
   return (
     <GlobalContext.Provider
       value={{

@@ -77,7 +77,7 @@ const Singin = ({ setUserName, setPassword, setSuccess, setLogin }) => {
         ) : null}
         <div>
           <input
-            id="inputAuth"
+            id="inputAuthPassword"
             autoComplete="off"
             className="form-control mb-4"
             type={passwordHidden ? 'password' : 'text'}

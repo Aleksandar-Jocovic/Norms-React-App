@@ -7,7 +7,7 @@ import './norm.css';
 import { GlobalContext } from '../../context/GlobalState';
 
 const Norm = ({ norm }) => {
-  const { norms, } = useContext(GlobalContext);
+  const { norms, globalSTATE } = useContext(GlobalContext);
 
   const [info, setInfo] = useState(false);
   const [deleteCondition, setDeleteCondition] = useState(false);
@@ -20,7 +20,7 @@ const Norm = ({ norm }) => {
 
   // UPDATING LOCALSTORAGE
   /*   localStorage.clear(); */
-  /*   localStorage.setItem('norms', JSON.stringify(norms)); */
+  // localStorage.setItem('state-norms', JSON.stringify(globalSTATE));
 
   const styleBtn = {
     transitionStyle: {
