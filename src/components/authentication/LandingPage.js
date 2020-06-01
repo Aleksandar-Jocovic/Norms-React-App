@@ -56,6 +56,7 @@ const LandingPage = props => {
           password={password} setPassword={setPassword} setLogin={setLogin}
         />
       }
+
     </div >
   )
 }

@@ -12,8 +12,8 @@ const getLocalStorageState = () => {
       users: [
 
         {
-          name: 'w',
-          pass: 'w',
+          name: 'demo',
+          pass: 'demopassword',
           userId: 0,
           norms: [
             {

@@ -41,6 +41,12 @@ const Login = ({ props, setUserName, setPassword, username, password }) => {
     if (password.length > 0) setErrorPassword(false)
   }
 
+  //demo logIn
+  const demoLogin = () => {
+    setUserName('demo')
+    setPassword('demopassword')
+  }
+
   return (
     <>
       <form className="form-inline my-2 my-lg-0 d-flex flex-column">
@@ -83,6 +89,11 @@ const Login = ({ props, setUserName, setPassword, username, password }) => {
       </form>
 
       <button
+        className="btn btn-info m-auto my-2"
+        onClick={demoLogin}
+      >Demo Account</button>
+      <br />
+      <button
         className="btn btn-info m-auto"
         onClick={() => {
           if (validateInput()) {
@@ -95,6 +106,8 @@ const Login = ({ props, setUserName, setPassword, username, password }) => {
           }
         }}
       >Log in</button>
+
+
     </>
   )
 }
