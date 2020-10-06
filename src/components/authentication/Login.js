@@ -87,25 +87,26 @@ const Login = ({ props, setUserName, setPassword, username, password }) => {
           <label id="labelAuth">pasword*</label>
         </div>
       </form>
+      <div className="d-flex">
+        <button
+          className="btn btn-info"
+          onClick={demoLogin}
+        >Demo Account</button>
+        <br />
+        <button
+          className="btn btn-info mx-2"
+          onClick={() => {
+            if (validateInput()) {
+              auth.login(users, username, password, changeUserAction)
+              props.history.push("/app")
+            }
 
-      <button
-        className="btn btn-info m-auto my-2"
-        onClick={demoLogin}
-      >Demo Account</button>
-      <br />
-      <button
-        className="btn btn-info m-auto"
-        onClick={() => {
-          if (validateInput()) {
-            auth.login(users, username, password, changeUserAction)
-            props.history.push("/app")
-          }
-
-          if (!auth.authenticated) {
-            props.history.push("/")
-          }
-        }}
-      >Log in</button>
+            if (!auth.authenticated) {
+              props.history.push("/")
+            }
+          }}
+        >Log in</button>
+      </div>
 
 
     </>
