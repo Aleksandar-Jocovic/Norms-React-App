@@ -27,7 +27,7 @@ const LandingPage = props => {
 
 
   return (
-    <div className="d-flex flex-column align-items-center" style={{ margin: '200px 0 30px 0' }}>
+    <div className="d-flex flex-column align-items-center" style={{ margin: '100px 0 30px 0' }}>
       <h4>Welcome to norms.</h4>
       <h5 className="my-0">Set goals and track your progress.</h5>
       <p>Please log in or create new account.</p>
